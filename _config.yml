@@ -30,7 +30,7 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
-gems: [jekyll-paginate]
+  - jekyll-paginate
 paginate: 5
 
 

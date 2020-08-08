@@ -27,11 +27,6 @@ bilibli_username:  13061595
 #twitter_username:   
 bilibli_username: drinkalot
 
-script:
-- var:
-  - key: src
-    value: //cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js # live2d
-    
 
 
 
@@ -40,8 +35,6 @@ script:
 
 # Markdown settings
 # replace redcarpet to kramdown,
-# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
-# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 highlighter: rouge
 kramdown:

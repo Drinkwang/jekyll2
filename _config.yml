@@ -5,9 +5,9 @@ header-img: img/post-bg-desk.jpg
 email: iamprogrammer97@gmail.com
 description: "Every failure is leading towards success."
 keyword: "俊客, Drink Blog, 俊客的博客, qiubaiying, unity, IEEE, html, ai"
-url: "http://drink.github.io"          # your host, for absolute URL
+url: "http://drinker.site"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/Drinkwang/arthurwang97.github.io.git" # you code repository
+github_repo: "https://github.com/Drinkwang/jekyll2" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
@@ -43,7 +43,7 @@ gitalk:
   enable: true    #是否开启Gitalk评论
   clientID: 833e8dd8922fa27d5d97                            #生成的clientID
   clientSecret: 82d92450b24292cf8404ad89b38433a4626ed5c0   #生成的clientSecret
-  repo: blogTalk    #仓库名称
+  repo: jekyll2    #仓库名称
   owner: Drinkwang    #github用户名
   admin: Drinkwang
   distractionFreeMode: true #是否启用类似FB的阴影遮罩

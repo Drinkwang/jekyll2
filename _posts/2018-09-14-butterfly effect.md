@@ -10,9 +10,9 @@ tags:
     - ai
 ---
 > 说说今天主题，蝴蝶效应，一个很有意思的根据数理的出来的定理，今天我想提出一点不一样的看法。
+
  
- 
- 
+
  众所周知，蝴蝶效应，是基于指数或者幂或者什么的三维方程，那么只要如果用时间作为恒坐标，某参数带入y，另外一个作为z。y的差距很小，但是只要时间够长，那么结果z就完全不同.
 * x (为时间作为变量)
 * y（作为研究变量，研究随着x的变化，不同的y会带来什么样的z）
@@ -27,7 +27,7 @@ tags:
 最后公式为
 ##某个时间发生的值=N（约束项=某个小树）{（某个人的值1）+（某个人的值2）+xxx}
 
-![人工神经梯度递减推算求瑟塔n.png](https://upload-images.jianshu.io/upload_images/13871785-ad5be95f53670c50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image]({{ "/assets/be/ai.png" | absolute_url }})
 
 是不是和后面的公式很相似，这个后面值是代价函数的偏导，用微积分求最小值
 
@@ -46,7 +46,7 @@ sequence
   Alice->Bob: Hello Bob, how are you?
   Note right of Bob: Bob thinks
   Bob-->Alice: I am good thanks!
-  
+
 
 
 

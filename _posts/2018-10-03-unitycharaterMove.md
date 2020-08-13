@@ -32,12 +32,14 @@ void Update()
 {camera.position=player.position+offset;
 }
  - [x]
- ```
+```
 ###这里我们用代码实现了一个让镜头和玩家控制单位保持一定的功能，but，它不能实现角度的控制。也就是说，在某些第三人称视角游戏，镜头是始终保持在单位正前方视角的，这时我们就需要一个角度的控制
 ---
 #But，wait one sconds，这里就不能简简单单控制相机的四元数角度旋转了。如果你只是控制相机的旋转，问题就是你会发现相机比校色旋转的更快。
 
-![人物旋转](https://upload-images.jianshu.io/upload_images/13871785-a898ac74a678f4ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![1]({{ "/assets/characterMove/1.png" | absolute_url }})
+
+
 
 其实为什么出现这样的结果很简单，人物旋转时候并没有围绕相机做圆周运动，而应该是相机围绕人物做圆周运动，并且朝向和人物保持一致就好了
 
@@ -46,11 +48,15 @@ void Update()
 how to solve this question。it is very based，but waste my many many time！
 解决这个问题的药典（import）便是，嗯，摄像机围绕人物做圆周运动，由之间圆上坐标，并算出旋转特定角度之后的坐标点。
 
-![问题产生后的行为](http://upload-images.jianshu.io/upload_images/13871785-f932e0ccd53ce0b7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![问题产生后的行为]({{ "/assets/characterMove/2.jpg" | absolute_url }})
+
+
 
 当然这个问题实际上并没有那么好解决。因为你这个问题说难也难，说不难也不难，首先我将图片画了出来
 
-![请无视渣画图，看不懂也没关系](https://upload-images.jianshu.io/upload_images/13871785-cbd04bc006d58482.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![请无视渣画图，看不懂也没关系]({{ "/assets/characterMove/3.png" | absolute_url }})
+
+
 
 大家不要被这图吓到，实际上我也看不懂。。。咳咳，首先我想到是连接旋转前和旋转后的点，知道了旋转角度，而且摄像机离玩家角色长度不变，所以通过角色的位置点连接旋转前的摄像机和旋转后的摄像机构筑一个等腰三角形，然后通过余弦定理求出各个边。。。但是，我不知道怎么表示出旋转后的坐标哇（一下子就哭了出来）
 嗯，要是初中的我一定会知道的。一定！！！
@@ -73,19 +79,26 @@ r*(offset.x*Mathf.Cos(a.y*Mathf.PI/180)-offset.z*Mathf.Sin(a.y*Mathf.PI/180)),
 r*(offset.z*Mathf.Sin(a.y*Mathf.PI/180)+offset.x*Mathf.Cos(a.y*Mathf.PI/180))
 );
 		
-```
+ ```
 
 因为半径是个差值，所以我们针对的（x，y）实际上是摄像机到玩家控制单位的一个向量。最后我们需要把camera的位置+算出来的插值，但因为玩家转动的角度相反，所以我们需要改成camera-算出来的插值
 
 最后我们需要再加上最后一行代码，就大功搞成了
 ``camera.transform.lookat(player); ``
 
-![人物旋转.png](https://upload-images.jianshu.io/upload_images/13871785-a898ac74a678f4ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![人物旋转]({{ "/assets/characterMove/1.png" | absolute_url }})
+
+
 
 我们需要将镜头旋转和人物旋转保持一致！
 
-![效果.png](https://upload-images.jianshu.io/upload_images/13871785-e21cf3fd18f998df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![result]({{ "/assets/characterMove/4.jpg" | absolute_url }})
+
+
 
 如果能把offset的值乘上一个值n，能实现镜头远近的效果，再用个lerp便能实现镜头过度动画和人物对话拉近镜头的效果了！
 
-![将n等于0，镜头在人物头顶.png](https://upload-images.jianshu.io/upload_images/13871785-91cc027745de941d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![镜头在头顶，穿模]({{ "/assets/characterMove/5.jpg" | absolute_url }})
+
+
+

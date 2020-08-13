@@ -29,6 +29,7 @@ tags:
 ![break]({{ "/assets/kindle/break.jpg" | absolute_url }})
 
 
+
 ``打开后我们就可以看到这样一个界面了，这个里面布局是可以通过调整json和一些玩意来实现的，我们来介绍下我所安装的一些软件``
 
 
@@ -46,9 +47,12 @@ tags:
 这个软件应该算得上kindle破解技术宅必备，通过这，既可以搭建一个内网应用环境，用电脑usb连接到kindle，或者用wifi连接ssh。用来登入putty，telnet，等等网络协议，我见过有大神在上面交叉编译实现node.js在上面部署服务器代码以及用c语言实现黑苹果，用了它kindle将无所不能。因为它本身是一个linux系统设备，当作树莓派某些功能来用问题不大，只要肯折腾，说它是一生产工具也是完全不过分，不过当然。。这样的设备估计只有在末日才能发挥它应有的生产力的作用，让处在和平时期看惯图形和网络的便利“娇生惯养”的我通过它来码代码，这不是找罪受么，恕臣妾实在是做不到啊！
 
 >剩下就是通过elink load game 来模拟gb。通过水墨屏什么来实现gb，呃有点。。。不过体验一下和弄清楚源码也很不错拉，虽然我水平不是很够，但是慢慢开始看github上面各个模块的代码，也是一种淡淡的享受！
-![kindle玩gb俄罗斯方块.jpg](https://upload-images.jianshu.io/upload_images/13871785-b67d24ab2c1a8e0b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![kindle跑fbgnuboy gb模拟器](https://upload-images.jianshu.io/upload_images/13871785-a490234e08074a76.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![kindle进入游戏.jpg](https://upload-images.jianshu.io/upload_images/13871785-70f1cad227b7da72.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![usbnetwork]({{ "/assets/kindle/gbGame.jpg" | absolute_url }})
+
+![usbnetwork]({{ "/assets/kindle/gbGame1.jpg" | absolute_url }})
+
+![usbnetwork]({{ "/assets/kindle/gbGameEnulator.jpg" | absolute_url }})
 
 以上就是论kindle可以怎么玩的初体验，上诉案例都可以在论坛找到源代码以及实现方法，还有很多没有介绍给大家，之后会一一介绍给大家，包括一些不正经的内容。比如kindle实现假注册用来模拟一个注册过的设备。当然，这些内容在论坛里也被提及到，这样会加大盗窃设备分险而口诛笔伐，这也说明外国人的版权意识形态。以及对合法破解和不合法破解的态度，当然我也会处于更理性的文字去跟大家分析这些破解hacking的点点滴滴。以及其中的技术。
 之后，由于我还在学习过程中，如果大家有什么好玩的想法，可以跟我分享噢，这是我的博客地址

@@ -1,6 +1,6 @@
 # Site settings
 title: Drink Blog
-SEOTitle: 俊客的博客 | Lw Blog
+SEOTitle: 俊客的博客 | JUNKE Blog
 header-img: img/post-bg-desk.jpg
 email: iamprogrammer97@gmail.com
 description: "Every failure is leading towards success."
@@ -78,7 +78,7 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "BitHachi·真相只有一个",
+        title: "BitHachi",
         href: "http://www.bithachi.cn"
     },{
         title: "简书·BY",

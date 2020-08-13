@@ -78,8 +78,8 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "WY",
-        href: "http://zhengwuyang.com"
+        title: "BitHachi·真相只有一个",
+        href: "http://www.bithachi.cn"
     },{
         title: "简书·BY",
         href: "https://www.jianshu.com/u/83f7cad592de"

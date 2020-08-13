@@ -11,7 +11,7 @@ tags:
 ---
 
 
-# # H5开发恐怖事情
+# # H5开发恐怖事情-Laya运行出问题总结
 
 # window和linux差距
 
@@ -21,7 +21,7 @@ tags:
 
 ![image](https://s2.ax1x.com/2020/01/06/lrTuFS.png)
 
-[toc]
+
 
 ## List中可怕的事情
 

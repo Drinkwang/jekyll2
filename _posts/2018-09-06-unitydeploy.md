@@ -14,11 +14,7 @@ tags:
 
 
 
-```text
-![image]({{ 'https://upload-images.jianshu.io/upload_images/13871785-cbd04bc006d58482.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240' | prepend: site.baseurl }})
-```
-
-
+ ![image]({{'https://upload-images.jianshu.io/upload_images/13871785-cbd04bc006d58482.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240' | prepend: site.baseurl}})
 
 >![image](https://upload-images.jianshu.io/upload_images/13871785-5c6bb1d7aa5b63da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 

@@ -80,7 +80,12 @@ friends: [
     {
         title: "BitHachi",
         href: "http://www.bithachi.cn"
-    },{
+    },
+    {
+        title: "cirno.blog",
+        href: "http://cirno.blog/"
+    },
+    {
         title: "简书·BY",
         href: "https://www.jianshu.com/u/83f7cad592de"
     },{

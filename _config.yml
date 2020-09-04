@@ -132,15 +132,13 @@ games: [
         status: "devolopment",
         words: "weplay 2020的gamejam作品，纯sole作品，sole太难了，真希望不solo，但它基本满足了我上面说的制作卡牌游戏的欲望，这个作品是我目前框架最完整的一个，应该会做完吧..",
         href: "https://www.youxibd.com/gamejam/cgjcyber2020/detail/510"
-    },
-    {
+    },{
         title: "星际银河-快递时代/Star Courier",
         image: "/assets/game/StarCourier",
         status: "prototype",
         words: "看银河英雄传说有感",希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰
         href: "https://unity3d.com/"
-    },
-    {
+    },{
         title: "待制作",
         image: "",
         status: "prototype",

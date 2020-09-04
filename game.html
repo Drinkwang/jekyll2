@@ -30,7 +30,11 @@ header-img: "img/post-bg-rwd.jpg"
                     {% for game in site.games %}
 						<br/>
 						<li>>{{game.title}}</li>
-                        <li><img src="{{games.image}}"/></li>
+                        <li>
+						<a href="{{ game.href }}">
+                        <img src="{{games.image}}}"/>
+                        </a>
+						</li>
 						<li><div style={font-weight:bold;}>ps:</div>{{game.words}}</li>
 						<li>游戏地址:
 						{% if game.href %}

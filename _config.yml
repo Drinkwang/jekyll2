@@ -124,7 +124,7 @@ games: [
         image: "/assets/game/neverback.png",
         status: "devolopment",
         words: "原画：老鸽子，编程：我...一个群内gamejam作品的延申，最早是希望做成一个卡牌游戏的，但是不知不觉就搞成一个动作蓄力游戏了..想要对接广告试图商业化一部分，但是目前质量还是有些低，需要持续开发",
-        href: "jekyll-8d39n0ao1.vercel.app"
+        href: "http://jekyll-8d39n0ao1.vercel.app"
     },
     {
         title: "都是你的错/All‘s your Fault",
@@ -136,7 +136,7 @@ games: [
         title: "星际银河-快递时代/Star Courier",
         image: "/assets/game/StarCourier",
         status: "prototype",
-        words: "看银河英雄传说有感",希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰
+        words: "看银河英雄传说有感,希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰",
         href: "https://unity3d.com/"
     },{
         title: "待制作",

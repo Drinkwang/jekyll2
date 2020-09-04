@@ -100,3 +100,50 @@ friends: [
         href: "https://forum.unity.com/"
     }
 ]
+
+#Games
+games: [
+
+    {
+        title: "古堡洞穴/the Cave",
+        img:"/assets/game/caveEvil.png",
+        status:"completed",
+        words:"这是大一时候制作一款解密类型游戏，游戏整体比较单挑，其实最早创意是通过手机扫描电脑游戏的图案配合过关的，但因为一些原因搁置了...",
+        en:"This is a freshman to make a decryption type of game, the overall comparison of the game is simple, in fact, the creative is through phone scanning game photo with clearance, but because of some reason put aside...",
+        href: "http://www.4399.com/flash/214818.htm"
+    },
+    {
+        title: "王傲世的梦/dream day",
+        img:"/assets/game/dreamday.png",
+        status:"completed",
+        words:"某天看《一人之下》漫画有感，根据一部分章节剧情制作，大概讲的是，有个程序员沉睡在自己梦中的世界不愿意面对现实，我想我那个时候的状态也有点类似吧...（当然我比故事的那个角色颜值要高一些）",
+        href: "http://www.4399.com/flash/200403.htm"
+    },
+    {
+        title: "一往无前/The man who never backs",
+        img:"/assets/game/neverback.png",
+        status:"devolopment",
+        words:"原画：老鸽子，编程：我...一个群内gamejam作品的延申，最早是希望做成一个卡牌游戏的，但是不知不觉就搞成一个动作蓄力游戏了..想要对接广告试图商业化一部分，但是目前质量还是有些低，需要持续开发",
+        href: "jekyll-8d39n0ao1.vercel.app"
+    },
+    {
+        title: "都是你的错/All‘s your Fault",
+        img:"/assets/game/AllsyourFault",
+        status:"devolopment",
+        words:"weplay 2020的gamejam作品，纯sole作品，sole太难了，真希望不solo，但它基本满足了我上面说的制作卡牌游戏的欲望，这个作品是我目前框架最完整的一个，应该会做完吧..",
+        href: "https://www.youxibd.com/gamejam/cgjcyber2020/detail/510"
+    },{
+        title: "星际银河-快递时代/Star Courier",
+        img:"/assets/game/StarCourier",
+        status:"prototype",
+        words:"看银河英雄传说有感",希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰
+        href: "https://unity3d.com/"
+    },{
+        title: "待制作",
+        img:"",
+        status:"prototype",
+        words:"我有很多想自己做的游戏,但是人的精力毕竟是有限的。希望能在有限的岁月里，做出一部算是精品的游戏，满足儿时的梦想",
+        href: "https://forum.unity.com/"
+    }
+
+]

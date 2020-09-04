@@ -20,8 +20,25 @@ header-img: "img/post-bg-rwd.jpg"
 
 
     
-    <h5>Talks</h5>
 
+
+	 <!-- Friends Blog -->
+                {% if site.games %}
+                <hr>
+                <h5>Games</h5>
+                <ul class="list-inline">
+                    {% for game in site.games %}
+						<li>>{{game.title}}</li>
+                        <li><img src="{games.img}"/></li>
+						<li>words:{{game.words}}</a></li>
+						<li>游戏地址:
+						{% if game.href %}
+						<a href="{{game.href}}">访问</a>
+						{% endif %}
+						</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
     <ul>
         <li><a href="https://github.com">GitHub</a></li>
         <li><a href="http://jekyll.com.cn/">jekyll</a></li>

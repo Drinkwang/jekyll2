@@ -137,13 +137,13 @@ games: [
         image: "/assets/game/StarCourier",
         status: "prototype",
         words: "看银河英雄传说有感,希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰",
-        href: "https://unity3d.com/"
+       
     },{
         title: "待制作",
         image: "",
         status: "prototype",
         words: "我有很多想自己做的游戏,但是人的精力毕竟是有限的。希望能在有限的岁月里，做出一部算是精品的游戏，满足儿时的梦想",
-        href: "https://forum.unity.com/"
+      
     }
 
 ]

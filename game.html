@@ -28,13 +28,17 @@ header-img: "img/post-bg-rwd.jpg"
                 <h5>Games</h5>
                 <ul class="list-inline">
                     {% for game in site.games %}
+						<br/>
 						<li>>{{game.title}}</li>
-                        <li><img src="{games.image}"/></li>
+                        <li><img src="{{games.image}}"/></li>
 						<li>words:{{game.words}}</a></li>
 						<li>游戏地址:
 						{% if game.href %}
 						<a href="{{game.href}}">访问</a>
+						{% else %}
+						<div>}">暂时无法访问</div>
 						{% endif %}
+						<br/>
 						</li>
                     {% endfor %}
                 </ul>

@@ -28,15 +28,16 @@ header-img: "img/post-bg-rwd.jpg"
                 <h5>Games</h5>
                 <ul class="list-inline">
                     {% for game in site.games %}
-						<br/>
-						<li>><div style="font-weight: bold;">{{game.title}}</div</li>
+						<div style="height:2px;border-bottom:1px #ccc solid;"></div>
+						<li>><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
                         <li>
 						<a href="{{ game.href }}">
-                        <img src="{{game.image}}"/>
+                        <img src="{{game.image}}" style="display: inline; float: left; "/>
                         </a>
 						</li>
-						<li><div style="font-weight: bold;">ps:</div>{{game.words}}</li>
-						<li><div style="font-weight: bold;">游戏地址:</div>
+						<li><div style="font-weight: bold;display: inline;">ps:</div>{{game.words}}</li>
+						<li><div style="font-weight: bold;display: inline;">开发状态:</div>{{game.status}}</li>
+						<li><div style="font-weight: bold;display: inline;">游戏地址:</div>
 						{% if game.href %}
 						<a href="{{game.href}}">访问</a>
 						{% else %}

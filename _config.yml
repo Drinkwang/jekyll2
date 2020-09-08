@@ -4,7 +4,7 @@ SEOTitle: 俊客的博客 | JUNKE Blog
 header-img: img/post-bg-desk.jpg
 email: iamprogrammer97@gmail.com
 description: "一个想开发独立游戏的普通人，希望有一天能做出一款大家喜欢的游戏..Every failure is leading towards success."
-keyword: "俊客, Drink Blog, 俊客的博客, qiubaiying, unity, IEEE, html, ai"
+keyword: "俊客, Drink Blog, 俊客的博客, unity, IEEE, html, ai,laya"
 url: "http://drinker.site"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/Drinkwang/jekyll2" # you code repository
@@ -124,7 +124,7 @@ games: [
         image: "/assets/game/neverback.png",
         status: "devolopment",
         words: "合作开发，原画：老鸽子，编程：俊壳...一个群内gamejam作品的延申，最早是希望做成一个卡牌游戏的，但是不知不觉就搞成一个动作蓄力游戏了..我想要对接广告试图商业化一部分，但是目前质量还是有些低，需要持续开发..",
-        href: "http://jekyll-8d39n0ao1.vercel.app"
+        href: "https://dash-man-release-git-master.drinkwang.vercel.app/"
     },
     {
         title: "都是你的错/All‘s your Fault",
@@ -140,7 +140,7 @@ games: [
        
     },{
         title: "待制作",
-        image: "",
+        image: "/assets/game/mark.png",
         status: "prototype",
         words: "我有很多想自己做的游戏,但是人的精力毕竟是有限的。希望能在有限的岁月里，做出一部算是精品的游戏，满足儿时的梦想",
       

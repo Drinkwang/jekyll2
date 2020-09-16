@@ -145,8 +145,8 @@ games: [
         image: "/assets/game/StarCourier.png",
         status: "prototype",
         words: "看银河英雄传说有感,希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰",
-        reserved1: "null",
-        reserved2: "null"
+        reserved1: "源代码：",
+        reserved2: "https://github.com/Drinkwang/Star-Courier"
     },{
         title: "待制作",
         image: "/assets/game/mark.png",

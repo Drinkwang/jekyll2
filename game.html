@@ -48,6 +48,25 @@ header-img: "img/post-bg-rwd.jpg"
 						{% endif %}
 						<br/>
 						</li>
+						
+						<li>
+						{% if game.reserved1 != "null" %}
+						<div style="font-weight: bold;display: inline;" >{{game.reserved1}}</div>
+						{% else %}
+						{% endif %}
+			
+					
+						<br/>
+						</li>
+												<li>
+						{% if game.reserved2 != "null" %}
+						<div style="font-weight: bold;display: inline;" >{{game.reserved1}}</div>
+						{% else %}
+						{% endif %}
+			
+					
+						<br/>
+						</li>
                     {% endfor %}
                 </ul>
                 {% endif %}

@@ -124,6 +124,16 @@ games: [
         reserved2: "null"
     },
     {
+        title: "一个不知名的作品/nothing",
+        image: "/assets/game/neverMind.png",
+        status: "completed",
+        words: "群内朋友联合进行开发的作品，差不多是一个13人接力作，也是对游戏开发的一次尝试...",
+        href: "https://www.bilibili.com/video/BV1Z5411a7J9",
+        reserved1: "<div style="font-weight: bold;display: inline;" >b站视频：</div><div style="display: inline;" >https://www.bilibili.com/video/BV1Z5411a7J9</div>",
+        reserved2: "<div style="font-weight: bold;display: inline;" >github源码：</div><div style="display: inline;" >https://github.com/Drinkwang/UnityRelay</div>"
+
+    },
+    {
         title: "一往无前/The man who never backs",
         image: "/assets/game/neverback.png",
         status: "completed",
@@ -145,8 +155,8 @@ games: [
         image: "/assets/game/StarCourier.png",
         status: "prototype",
         words: "看银河英雄传说有感,希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰",
-        reserved1: "源代码：",
-        reserved2: "https://github.com/Drinkwang/Star-Courier"
+        reserved1: "<div style="font-weight: bold;display: inline;" >源代码：</div><div style="display: inline;" >https://github.com/Drinkwang/Star-Courier</div>",
+        reserved2: ""
     },{
         title: "待制作",
         image: "/assets/game/mark.png",

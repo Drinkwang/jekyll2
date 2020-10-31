@@ -111,7 +111,7 @@ games: [
         words: "这是大一时候制作一款解密类型游戏，游戏整体比较单挑，其实最早创意是通过手机扫描电脑游戏的图案配合过关的，但因为一些原因搁置了...",
         en: "This is a freshman to make a decryption type of game, the overall comparison of the game is simple, in fact, the creative is through phone scanning game photo with clearance, but because of some reason put aside...",
         href: "http://www.4399.com/flash/214818.htm",
-        reserved1: "null",
+        reserved1: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><a href=\"https://github.com/Drinkwang/cave-game\" >https://github.com/Drinkwang/cave-game</a>",    
         reserved2: "null"
     },
     {
@@ -129,9 +129,8 @@ games: [
         status: "completed",
         words: "群内朋友联合进行开发的作品，差不多是一个13人接力作，也是对游戏开发的一次尝试...",
         href: "https://www.bilibili.com/video/BV1Z5411a7J9",
-        reserved1: "<div style=\"font-weight: bold;display: inline;\" >b站视频：</div><div style=\"display: inline;\" >https://www.bilibili.com/video/BV1Z5411a7J9</div>",
-        reserved2: "<div style=\"font-weight: bold;display: inline;\" >github源码：</div><div style=\"display: inline;\" >https://github.com/Drinkwang/UnityRelay</div>"
-
+        reserved1: "<div style=\"font-weight: bold;display: inline;\" >b站视频：</div><a href=\"https://www.bilibili.com/video/BV1Z5411a7J9\" >https://www.bilibili.com/video/BV1Z5411a7J9</div>",
+        reserved2: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><a href=\"https://github.com/Drinkwang/UnityRelay\" >https://github.com/Drinkwang/UnityRelay</a>"    
     },
     {
         title: "一往无前/The man who never backs",
@@ -155,7 +154,7 @@ games: [
         image: "/assets/game/StarCourier.png",
         status: "prototype",
         words: "看银河英雄传说有感,希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰",
-        reserved1: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><div style=\"display: inline;\" >https://github.com/Drinkwang/Star-Courier</div>",
+        reserved1: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><a href=\"https://github.com/Drinkwang/Star-Courier\" >https://github.com/Drinkwang/Star-Courier</a>",
         reserved2: ""
     },{
         title: "待制作",

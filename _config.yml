@@ -123,16 +123,7 @@ games: [
         reserved1: "null",
         reserved2: "null"
     },
-    {
-        title: "一个不知名的作品/nothing",
-        image: "/assets/game/neverMind.png",
-        status: "completed",
-        words: "(合作开发)群内朋友联合进行开发的作品，差不多是一个13人接力作，也是对游戏开发的一次尝试...",
-        href: "https://www.bilibili.com/video/BV1Z5411a7J9",
-        reserved1: "<div style=\"font-weight: bold;display: inline;\" >b站视频：</div><a href=\"https://www.bilibili.com/video/BV1Z5411a7J9\" >https://www.bilibili.com/video/BV1Z5411a7J9"</a>,
-        reserved2: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><a href=\"https://github.com/Drinkwang/UnityRelay\" >https://github.com/Drinkwang/UnityRelay</a>"    
-    },
-    {
+        {
         title: "一往无前/The man who never backs",
         image: "/assets/game/neverback.png",
         status: "completed",
@@ -165,7 +156,17 @@ games: [
         reserved1: "null",
         reserved2: "null"
       
-    },{
+    },
+    {
+        title: "一个不知名的作品/nothing",
+        image: "/assets/game/neverMind.png",
+        status: "completed",
+        words: "(合作开发)群内朋友联合进行开发的作品，差不多是一个13人接力作，也是对游戏开发的一次尝试...",
+        href: "https://www.bilibili.com/video/BV1Z5411a7J9",
+        reserved1: "<div style=\"font-weight: bold;display: inline;\" >b站视频：</div><a href=\"https://www.bilibili.com/video/BV1Z5411a7J9\" >https://www.bilibili.com/video/BV1Z5411a7J9"</a>",
+        reserved2: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><a href=\"https://github.com/Drinkwang/UnityRelay\" >https://github.com/Drinkwang/UnityRelay"</a>"    
+    },
+    {
         title: "待制作",
         image: "/assets/game/mark.png",
         status: "prototype",

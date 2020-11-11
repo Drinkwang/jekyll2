@@ -29,7 +29,7 @@ header-img: "img/post-bg-rwd.jpg"
                 <ul class="list-inline">
                     {% for game in site.games %}
 						<div style="height:2px;border-bottom:1px #ccc solid;"></div>
-						<li>><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
+						<li><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
 						<br/>
 						<div>
 						</div>
@@ -46,23 +46,20 @@ header-img: "img/post-bg-rwd.jpg"
 						{% else %}
 						<s>}">暂时无法访问</s>
 						{% endif %}
-
-						</li>
-						
+						</li>			
 						<br/>
 						<li>
+						<div>
 						{% if game.reserved1 != "null" %}
 						{{game.reserved1}}
 						{% else %}
 						{% endif %}
-						</li>
-						<br/>
-						<li>
+			
 						{% if game.reserved2 != "null" %}
 						{{game.reserved2}}
 						{% else %}
 						{% endif %}
-
+						</div>
 						</li>
                     {% endfor %}
                 </ul>

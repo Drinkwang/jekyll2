@@ -147,8 +147,7 @@ games: [
         words: "(个人作品)看银河英雄传说有感,希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰",
         reserved1: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><a href=\"https://github.com/Drinkwang/Star-Courier\" >https://github.com/Drinkwang/Star-Courier</a>",
         reserved2: ""
-<<<<<<< HEAD
-=======
+
     },{
         title: "RopeSkipperKing",
         image: "/assets/game/RopeSkipperKing.png",
@@ -167,7 +166,6 @@ games: [
         href: "https://www.bilibili.com/video/BV1Z5411a7J9",
         reserved1: "<div style=\"font-weight: bold;display: inline;\" >b站视频：</div><a href=\"https://www.bilibili.com/video/BV1Z5411a7J9\" >https://www.bilibili.com/video/BV1Z5411a7J9"</a>",
         reserved2: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><a href=\"https://github.com/Drinkwang/UnityRelay\" >https://github.com/Drinkwang/UnityRelay"</a>"    
->>>>>>> 1b8b11dbb4e2b99e6098cb8f935bcb52bc52cd9c
     },
     {
         title: "待制作",

@@ -15,7 +15,7 @@ header-img: "img/post-bg-rwd.jpg"
 <div class="zh post-container">
 
     <!--copied from markdown -->
-    <blockquote><p>这里放的是个人游戏开发的作品集(不包括在职期间公司的项目)<br>
+    <blockquote><p>这里放的是个人和朋友的游戏开发的作品集(并不包括在职期间公司的项目)<br>
     </blockquote>
 
 
@@ -29,7 +29,7 @@ header-img: "img/post-bg-rwd.jpg"
                 <ul class="list-inline">
                     {% for game in site.games %}
 						<div style="height:2px;border-bottom:1px #ccc solid;"></div>
-						<li>><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
+						<li><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
 						<br/>
 						<div>
 						</div>
@@ -46,11 +46,9 @@ header-img: "img/post-bg-rwd.jpg"
 						{% else %}
 						<s>}">暂时无法访问</s>
 						{% endif %}
-
-						</li>
-						
+						</li>			
 						<br/>
-						<li>
+
 						{% if game.reserved1 != "null" %}
 						{{game.reserved1}}
 						{% else %}
@@ -60,10 +58,7 @@ header-img: "img/post-bg-rwd.jpg"
 						{{game.reserved2}}
 						{% else %}
 						{% endif %}
-
-					
 						<br/>
-						</li>
                     {% endfor %}
                 </ul>
                 {% endif %}

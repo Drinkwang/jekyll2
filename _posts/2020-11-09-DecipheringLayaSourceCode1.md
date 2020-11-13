@@ -92,7 +92,7 @@ export class Config {
 ```
 我们可以直接对Config这个类使用Shift+f12(Go to reference)，如这样
 
-![image]({{ "/assets/Laya/layaSourceConfig.jpg" | absolute_url }})
+![image]({{ "/assets/Laya/layaSourceConfig.png" | absolute_url }})
 
 要想读懂源代码，GotoReference不可少，这个config明显的在许多类中被调用过，如Laya.ts，Laya3D.ts，以及AnimationBase、Stage、Render、Mesh2D.ts，而实际上这些类就是Laya引擎的主干（至少目前我们学习时候可以这样看作）。上篇文章，我们介绍了Laya.ts和Laya3D.ts,那么我们这堂课就去讲讲有关动画的AnimationBase类的相关内容。
 
@@ -159,7 +159,54 @@ export class Config {
         }
     }
 ```
-我们...（待续）
+如果大家对Laya开发还有影响的话，Laya的动画类也是可以用Laya.interval来控制动画播放的帧间隔时间，这里引擎开发和具体使用上终于产生了微妙的联系...  而现在，在了解上述配置后，我们可以来看下`_frameLoop`这个放在定时器里的方法
+
+```typescript
+    /**@private */
+    protected _frameLoop(): void {
+        if (this._isReverse) {
+            this._index--;
+            if (this._index < 0) {
+                if (this.loop) {
+                    if (this.wrapMode == AnimationBase.WRAP_PINGPONG) {
+                        this._index = this._count > 0 ? 1 : 0;
+                        this._isReverse = false;
+                    } else {
+                        this._index = this._count - 1;
+                    }
+                    this.event(Event.COMPLETE);
+                } else {
+                    this._index = 0;
+                    this.stop();
+                    this.event(Event.COMPLETE);
+                    return;
+                }
+            }
+        } else {
+            this._index++;
+            if (this._index >= this._count) {
+                if (this.loop) {
+                    if (this.wrapMode == AnimationBase.WRAP_PINGPONG) {
+                        this._index = this._count - 2 >= 0 ? this._count - 2 : 0;
+                        this._isReverse = true;
+                    } else {
+                        this._index = 0;
+                    }
+                    this.event(Event.COMPLETE);
+                } else {
+                    this._index--;
+                    this.stop();
+                    this.event(Event.COMPLETE);
+                    return;
+                }
+            }
+        }
+        this.index = this._index;
+    }
+
+```
+
+...待续
 
 ## 2.接下来该怎么做
 

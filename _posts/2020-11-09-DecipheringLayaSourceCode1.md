@@ -90,11 +90,11 @@ export class Config {
 
 
 ```
-我们可以直接对Config这个类使用Shift+f12(Go to reference)，如这样
+我们可以直接对Config这个类使用<font color='red'> Shift+f12</font>(Go to reference-跳转引用)，如这样
 
 ![image]({{ "/assets/Laya/layaSourceConfig.png" | absolute_url }})
 
-要想读懂源代码，GotoReference不可少，这个config明显的在许多类中被调用过，如Laya.ts，Laya3D.ts，以及AnimationBase、Stage、Render、Mesh2D.ts，而实际上这些类就是Laya引擎的主干（至少目前我们学习时候可以这样看作）。上篇文章，我们介绍了Laya.ts和Laya3D.ts,那么我们这堂课就去讲讲有关动画的AnimationBase类的相关内容。
+要想读懂源代码，*跳转引用* 必不可少，这个config明显的在许多类中被调用过，如Laya.ts，Laya3D.ts，以及AnimationBase、Stage、Render、Mesh2D.ts，而这些类就是Laya引擎的主干（至少目前我们学习时候可以这样看作）。上篇文章，我们介绍了Laya.ts和Laya3D.ts,那么我们这堂课就去讲讲有关动画的`AnimationBase`类的相关内容。
 
 1.首先是Play方法
 
@@ -159,7 +159,7 @@ export class Config {
         }
     }
 ```
-如果大家对Laya开发还有影响的话，Laya的动画类也是可以用Laya.interval来控制动画播放的帧间隔时间，这里引擎开发和具体使用上终于产生了微妙的联系...  而现在，在了解上述配置后，我们可以来看下`_frameLoop`这个放在定时器里的方法
+如果大家现在还对Laya开发还有印象的话，Laya的动画类也是可以用Laya.interval来控制动画播放的帧间隔时间，这里引擎开发和具体使用上终于产生了微妙的联系...  而现在，在了解上述配置后，我们可以来看下`_frameLoop`这个放在定时器里的方法
 
 ```typescript
     /**@private */
@@ -206,10 +206,189 @@ export class Config {
 
 ```
 
-...待续
+​	首先`this._isReverse`判断是否逆序播放，如果是的话，每一次time都将index--，并且在`this.loop==true`的时候，判断`warpMode`是否等于`AnimationBase.WARP_PINGPONG`,如果等于Pingpong，那么就需要每次将`this._isReverse`进行取反，具体表现在代码里，就是如果如果是逆序就把this._isReverse=false,如果不是就等于true。
+
+最后如果动画不是Loop的话，会在动画播放完毕时候，调用this.event，这个事件也会在其他地方进行注册。（例如`Skeleton`类）
+
+我们看完这个类之后继续 <font color='red'> shift+f12</font> 打开`AnimationBase`查看相关的引用，继续强调，查看引用和观看堆栈，是读懂源代码和调试的绝对神器。
+
+![image]({{ "/assets/Laya/animationBase.png" | absolute_url }})
+
+我们看到有二个类，我们先来看看`Animation`这个类,它继承了`AnimationBase`,我们看看它重写的父类Play
+
+```typescript
+    play(start: any = 0, loop: boolean = true, name: string = ""): void {
+        if (name) this._setFramesFromCache(name, true);
+        super.play(start, loop, name);
+    }
+
+```
+
+很基本的一个调用，不过它做了一些额外的工作，<font color='red'> if</font>判断中把该动画的名称从模版缓存池中拿出并解析。它是先从缓存池中提取的，而不是直接使用，这样能通过空间换取时间，提升性能
+
+```typescript
+    /**@private */
+    protected _setFramesFromCache(name: string, showWarn: boolean = false): boolean {
+        if (this._url) name = this._url + "#" + name;
+        if (name && Animation.framesMap[name]) {
+            var tAniO: any = Animation.framesMap[name];
+            if (tAniO instanceof Array) {
+                this._frames = Animation.framesMap[name];
+                this._count = this._frames.length;
+            } else {
+                if (tAniO.nodeRoot) {
+                    //如果动画数据未解析过,则先进行解析
+                    Animation.framesMap[name] = GraphicAnimation.parseAnimationByData(tAniO);
+                    tAniO = Animation.framesMap[name];
+                }
+                this._frames = tAniO.frames;
+                this._count = this._frames.length;
+                //如果读取的是动画配置信息，帧率按照动画设置的帧率播放
+                if (!this._frameRateChanged) this._interval = tAniO.interval;
+                this._labels = this._copyLabels(tAniO.labels);
+            }
+            return true;
+        } else {
+            if (showWarn) console.log("ani not found:", name);
+        }
+        return false;
+    }
+
+```
+
+然后我们再来理解就是framesMap的调用逻辑了， 按下<font color='red'>shift+f12</font> ，我们找到首次赋值的逻辑
+
+![image]({{ "/assets/Laya/framesMap.png" | absolute_url }})
+
+找到这些逻辑后，我们来依次看看具体的实现，注意看二个方法分别是被命名为`_loadAnimationData`和`createFrames`,所以可以看出这二个都是实例化或者载入动画数据用的，也就是在此处进行`frameMap`的初始化
+
+（理解思路就好，代码可以选择性观看）
+
+```typescript
+    private _loadAnimationData(url: string, loaded: Handler = null, atlas: string = null): void {
+        if (atlas && !Loader.getAtlas(atlas)) {
+            console.warn("atlas load fail:" + atlas);
+            return;
+        }
+        var _this: Animation = this;
+
+        function onLoaded(loadUrl: string): void {
+            if (!Loader.getRes(loadUrl)) {
+                // 如果getRes失败了，有可能是相同的文件已经被删掉了，因为下面在用完后会立即删除
+                // 这时候可以取frameMap中去找，如果找到了，走正常流程。--王伟
+                if (Animation.framesMap[url + "#"]) {
+                    _this._setFramesFromCache(_this._actionName, true);
+                    _this.index = 0;
+                    _this._resumePlay();
+                    if (loaded) loaded.run();
+                }
+                return;
+            }
+            if (url === loadUrl) {
+                var tAniO: any;
+                if (!Animation.framesMap[url + "#"]) {
+                    //此次解析仅返回动画数据，并不真正解析动画graphic数据
+                    var aniData: any = GraphicAnimation.parseAnimationData(Loader.getRes(url));
+                    if (!aniData) return;
+                    //缓存动画数据
+                    var aniList: any[] = aniData.animationList;
+                    var i: number, len: number = aniList.length;
+                    var defaultO: any;
+                    for (i = 0; i < len; i++) {
+                        tAniO = aniList[i];
+                        Animation.framesMap[url + "#" + tAniO.name] = tAniO;
+                        if (!defaultO) defaultO = tAniO;
+                    }
+                    if (defaultO) {
+                        Animation.framesMap[url + "#"] = defaultO;
+                        _this._setFramesFromCache(_this._actionName, true);
+                        _this.index = 0;
+                    }
+                    _this._resumePlay();
+                } else {
+                    _this._setFramesFromCache(_this._actionName, true);
+                    _this.index = 0;
+                    _this._resumePlay();
+                }
+                if (loaded) loaded.run();
+            }
+            //清理掉配置
+            Loader.clearRes(url);
+        }
+        if (Loader.getRes(url)) onLoaded(url);
+        else ILaya.loader.load(url, Handler.create(null, onLoaded, [url]), null, Loader.JSON);
+
+
+    }
+```
+
+```typescript
+    static createFrames(url: string | string[], name: string): any[] {
+        var arr: any[];
+        if (typeof (url) == 'string') {
+            var atlas: any[] = Loader.getAtlas(<string>url);
+            if (atlas && atlas.length) {
+                arr = [];
+                for (var i: number = 0, n: number = atlas.length; i < n; i++) {
+                    var g: Graphics = new Graphics();
+                    g.drawImage(Loader.getRes(atlas[i]), 0, 0);
+                    arr.push(g);
+                }
+            }
+        } else if (url instanceof Array) {
+            arr = [];
+            for (i = 0, n = url.length; i < n; i++) {
+                g = new Graphics();
+                g.loadImage(url[i], 0, 0);
+                arr.push(g);
+            }
+        }
+        if (name) Animation.framesMap[name] = arr;
+        return arr;
+    }
+```
+
+看到这里，你应该可以理清`Animation`这个类，我们接下来看看继承`AnimationBase`的第二个类，也就是`FrameAnimation`,帧动画具体对结点做操作，我们也把重点放在这个上面
+
+``` 
+    protected _displayToIndex(value: number): void {
+        if (!this._animationData) return;
+        if (value < 0) value = 0;
+        if (value > this._count) value = this._count;
+        var nodes: any[] = this._animationData.nodes, i: number, len: number = nodes.length;
+        for (i = 0; i < len; i++) {
+            this._displayNodeToFrame(nodes[i], value);
+        }
+    }
+```
+
+```
+     * @private
+     * 计算节点某个属性的帧数据
+     */
+    private _calculateNodePropFrames(keyframes: any[], frames: any[], key: string, target: number): void {
+        var i: number, len: number = keyframes.length - 1;
+        frames.length = keyframes[len].index + 1;
+        for (i = 0; i < len; i++) {
+            this._dealKeyFrame(keyframes[i]);
+            this._calculateFrameValues(keyframes[i], keyframes[i + 1], frames);
+        }
+        if (len == 0) {
+            frames[0] = keyframes[0].value;
+            if (this._usedFrames) this._usedFrames[keyframes[0].index] = true;
+        }
+        this._dealKeyFrame(keyframes[i]);
+    }
+
+```
+
+可以看出，这个基本上是对结点数组中进行计算和插值，我们就不做过多复述，如果你能够理解Animation和AnimationBase，按照我所说的方式分析其中的源代码也不难，这个就作为课外作业留给各位了...
 
 ## 2.接下来该怎么做
 
-接下来干的事情就比较枯燥了..我们会更深入的开始理解laya里面各个模块，让大家可以自己能够进行修改，如果大家喜欢我这一期的教程的话，我还会继续努力的。
+blog做到第二期，有点不敢相信..下一期我们将介绍下Mesh相关的逻辑，本人才疏浅学，很有可能一些内容并不够完善，也希望大家能给我一些意见，再次感谢大家捧场，多谢
 
 ![image]({{ "/assets/Emoji/CanWeShot.jpg" | absolute_url }})
+
+
+

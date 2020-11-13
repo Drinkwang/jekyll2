@@ -4,7 +4,7 @@ title:      逆袭，从0开始解读Laya源代码（一）
 subtitle:   Laya的H5开发
 date:       2020-11-02
 author:     BYDrinker
-header-img: img/post-bg-js-version.jpg
+header-img: img/post-bg-re-vs-ng2.jpg
 catalog: true
 tags:
     - 游戏开发，从0开始解读Laya源代码
@@ -17,15 +17,11 @@ tags:
 
 * 上一讲我们说道如何编译laya源代码，以及做了一些基础性的研究，那么这一期界面我们将进一步做更多考量
 
-前面几期教程：
+前面的教程： https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html 
 
- https://drinker.site/2020/11/02/%E8%A7%A3%E8%AF%BBlaya%E6%BA%90%E4%BB%A3%E7%A0%81(0).html 
 
-​						...
 
 > laya官方案例:https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4
-
-
 
 
 

@@ -19,6 +19,8 @@ tags:
 
 前面的教程： https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html 
 
+ 					   https://drinker.site/2020/11/09/DecipheringLayaSourceCode1.html 
+
 
 
 > laya官方案例:https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4
@@ -31,7 +33,7 @@ tags:
 
 ![image]({{ "/assets/Laya/process2.png" | absolute_url }})
 
-###  2.待续
+###  2.了解Mesh，以及laya渲染3d的流程
 
 ## 
 

@@ -89,7 +89,7 @@ tags:
 	}
 ```
 
-这里是一系列的初始化，但是并没有具体实际意义的值，所以我们就是逐一查看引用，先查出_nativeTempVector30的引用方法，我们会发现
+这里是一系列的初始化，但是并没有具体实际意义的值，所以我们就是逐一查看引用，先查出_nativeTempVector30的引用方法，我们会发现` _ getPhysicMesh()`
 
 ```typescript
 	/**
@@ -132,13 +132,79 @@ tags:
 	}
 ```
 
-这里的东西涉及到许多webGl的内容，当然，这里调用都是黑盒里面的类
+这个类是获取模型的所有三角面，具体调用时候是通过这些语句来实现的
+
+```typescript
+			var indices: Uint16Array = this._indexBuffer.getData();//TODO:API修改问题
+			for (var i: number = 0, n: number = indices.length; i < n; i += 3) {
+				var p0Index: number = indices[i] * floatCount + posOffset;
+				var p1Index: number = indices[i + 1] * floatCount + posOffset;
+				var p2Index: number = indices[i + 2] * floatCount + posOffset;
+				position0.setValue(verticesData[p0Index], verticesData[p0Index + 1], verticesData[p0Index + 2]);
+				position1.setValue(verticesData[p1Index], verticesData[p1Index + 1], verticesData[p1Index + 2]);
+				position2.setValue(verticesData[p2Index], verticesData[p2Index + 1], verticesData[p2Index + 2]);
+
+				Utils3D._convertToBulletVec3(position0, nativePositio0, true);
+				Utils3D._convertToBulletVec3(position1, nativePositio1, true);
+				Utils3D._convertToBulletVec3(position2, nativePositio2, true);
+				bt.btTriangleMesh_addTriangle(triangleMesh, nativePositio0, nativePositio1, nativePositio2, true);
+			}
+			this._btTriangleMesh = triangleMesh;
+```
+
+这里调用了_indexBuffer,我们看看它的赋值引用，我们可以看到一个这样的方法 `setIndices`,这里传入了网格格式以及网格索引
+
+```typescript
+  setIndices(indices: Uint8Array | Uint16Array | Uint32Array): void {
+
+​    var format: IndexFormat;
+
+​    if (indices instanceof Uint32Array)
+
+​      format = IndexFormat.UInt32;
+
+​    else if (indices instanceof Uint16Array)
+
+​      format = IndexFormat.UInt16;
+
+​    else if (indices instanceof Uint8Array)
+
+​      format = IndexFormat.UInt8;
 
 
 
-待续
+​    var indexBuffer: IndexBuffer3D = this._indexBuffer;
 
-![image]({{ "/assets/Emoji/CanWeShot.jpg" | absolute_url }})
+​    if (this._indexFormat !== format || indexBuffer.indexCount !== indices.length) {//format chang and length chang will recreate the indexBuffer
+
+​      indexBuffer.destroy();
+
+​      this._indexBuffer = indexBuffer = new IndexBuffer3D(format, indices.length, LayaGL.instance.STATIC_DRAW, this._isReadable);
+
+​    }
+
+​    indexBuffer.setData(indices);
+
+​    this._indexFormat = format;
+
+  }
+```
 
 
+
+如果你之前拥有一些webGL的教程，看到这里会有一种很强的既视感，就是用其渲染多边形，这里放出一个比较好的csdn教程 ：https://blog.csdn.net/lufy_Legend 
+
+实际上按照理解，这块其实也就是包装好的WebGl而已...Mesh类是为了更方便的去调用，所以我们直接看看Mesh的引用
+
+![image]({{ "/assets/Laya/MeshIsReader.png" | absolute_url }})
+
+
+
+可以看到一堆render对象，我们观察调用逻辑可以从meshRenderer调用到MeshSprite3D，这里基本上涵盖了所有这块的逻辑，具体我就不作过多阐述了，大家可以自行进行学习
+
+
+
+## 2.接下来该怎么做
+
+接下来就看大家的了，这个教程做到这里，应该教会了大家最基础的学习方式，包含本人基础薄弱的问题，所以可能存在许多纰漏和错误，望谅解，希望大家能够共同进步，我也继续努力。争取对这个理解更深入后出新的内容！
 

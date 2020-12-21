@@ -45,7 +45,7 @@ https://github.com/Unity-Technologies/vscode-unity-debug/issues/184
 
 
 
-##### 还有个和上面并列出现的问题，应该解决上面的就没问题了，待补充...如果实在不行我就只能问下git的维护人员了，可惜我的英语不是很流利，最近时间有点紧张，下次一定
+##### 还有个和上面并列出现的问题，应该解决上面的就没问题了，待补充...如果实在不行我就只能问下git的维护人员了，可惜我的英语不是很流利，最近时间有点紧张，下次一定...
 
 ![image]({{ "/assets/vscode/stackTrace.png" | absolute_url }})
 

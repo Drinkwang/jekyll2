@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      逆袭，从0开始解读Laya源代码（二）
+title:      逆袭，从0开始解读Laya源代码（三）
 subtitle:   Laya的H5开发
 date:       2020-11-16
 author:     BYDrinker
@@ -15,12 +15,13 @@ tags:
 
 
 
-* 上一讲我们讲解了Laya的Animation的模块，这一期界面我们将对Mesh.ts做更多考量
+* 上一讲我们讲解了Laya的Mesh的模块，我抛出了个观点，也就是实际上Laya中3d内容也就是在2d引擎的基础上额外封装一套Webgl罢了
 
 前面的教程： https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html 
 
- 					   https://drinker.site/2020/11/09/DecipheringLayaSourceCode1.html 
+ 			https://drinker.site/2020/11/09/DecipheringLayaSourceCode1.html 
 
+ 			https://drinker.site/2020/11/09/DecipheringLayaSourceCode2.html 
 
 
 > laya官方案例:https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4
@@ -192,7 +193,7 @@ tags:
 
 
 
-如果你之前看过一些webGL的教程，这里会有一种很强的既视感，就是用其渲染多边形，我放出我囤积许久的csdn教程 ：https://blog.csdn.net/lufy_Legend 
+如果你之前拥有一些webGL的教程，看到这里会有一种很强的既视感，就是用其渲染多边形，这里放出一个比较好的csdn教程 ：https://blog.csdn.net/lufy_Legend 
 
 实际上按照理解，这块其实也就是包装好的WebGl而已...Mesh类是为了更方便的去调用，所以我们直接看看Mesh的引用
 
@@ -200,10 +201,11 @@ tags:
 
 
 
-可以看到一堆render对象，我们观察调用逻辑可以从meshRenderer调用到MeshSprite3D，这里基本上涵盖了所有这块的逻辑，具体我就不作过多阐述了，大家可以自行进行学习，可能在下一讲SkyBox里面进行分析(如果有的话)
+可以看到一堆render对象，我们观察调用逻辑可以从meshRenderer调用到MeshSprite3D，这里基本上涵盖了所有这块的逻辑，具体我就不作过多阐述了，大家可以自行进行学习
 
 
 
 ## 2.接下来该怎么做
 
-接下来就看大家的了，这个教程做到这里，应该能教会了大家最基础的学习方式，因为本人基础薄弱的问题，存在许多纰漏和错误，望谅解，希望能与大家共同进步，我也继续努力。争取对这个源码理解更深入后出新的内容
+接下来就看大家的了，这个教程做到这里，应该教会了大家最基础的学习方式，包含本人基础薄弱的问题，所以可能存在许多纰漏和错误，望谅解，希望大家能够共同进步，我也继续努力。争取对这个理解更深入后出新的内容！
+

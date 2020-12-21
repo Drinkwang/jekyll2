@@ -2,7 +2,7 @@
 layout:     post
 title:      逆袭，从0开始解读Laya源代码（零）
 subtitle:   Laya的H5开发
-date:       2020-11-02
+date:       2020-11-01
 author:     BYDrinker
 header-img: img/post-bg-2015.jpg
 catalog: true

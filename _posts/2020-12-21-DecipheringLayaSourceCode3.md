@@ -180,7 +180,7 @@ onload = function(){
 
 我们可以进行断点，查看里面的具体实现
 
-![image]({{ "/assets/Laya/layaGL.png.png" | absolute_url }})
+![image]({{ "/assets/Laya/layaGL.png" | absolute_url }})
 
 最后就是把该绑定的进行绑定，这些等同于生成vbo和绑定vbo的过程，然后一切准备就绪就是调用`_render`方法
 

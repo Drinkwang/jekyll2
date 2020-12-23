@@ -171,6 +171,8 @@ onload = function(){
 ```
 基本上除了变换空间，Laya中的天空盒代码跟WebGl渲染面片有很大的一致性，换言之，Laya是对Webgl进行了一层封装，然后再利用封装好的方法去实现具体功能，比如天空盒之类的。至于为什么没有变换空间的代码，那是因为这部分的代码被封装到相机的功能里去了。
 
+![image]({{ "/assets/Laya/skyBoxCamera.png" | absolute_url }})
+
 对比代码，WebGlcontext的获取`    // webgl的context获取
     var gl = c.getContext('webgl') || c.getContext('experimental-webgl');`
 

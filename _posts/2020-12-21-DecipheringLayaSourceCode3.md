@@ -182,7 +182,10 @@ onload = function(){
 
 ![image]({{ "/assets/Laya/layaGL.png" | absolute_url }})
 
-最后就是把该绑定的进行绑定，这些等同于生成vbo和绑定vbo的过程，然后一切准备就绪就是调用`_render`方法
+最后就是把该绑定的进行绑定，这些等同于生成vbo和绑定vbo的过程，然后一切准备就绪就是调用`_render`方法,我们可以查看下其中的引用
+![image]({{ "/assets/Laya/skyboxMesh.png" | absolute_url }})
+这块就与我们之前上一讲所说的Mesh是一样的，也就是Mesh和MeshRender调用具体WebGl的render，这里不多叙述，直接来看看_render的代码
+
 
 
 

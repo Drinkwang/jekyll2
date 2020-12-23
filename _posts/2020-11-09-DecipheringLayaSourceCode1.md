@@ -17,11 +17,11 @@ tags:
 
 * 上一讲我们说道如何编译laya源代码，以及做了一些基础性的研究，那么这一期界面我们将进一步做更多考量
 
-前面的教程： https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html 
+前面的教程： [https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html](https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html) 
 
 
 
-> laya官方案例:https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4
+> laya官方案例:[https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4](https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4) 
 
 
 

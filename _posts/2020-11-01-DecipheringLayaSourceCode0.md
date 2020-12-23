@@ -21,7 +21,7 @@ tags:
 
 
 
-> laya官方案例:https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4
+> laya官方案例:[https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4](https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4)
 
 
 

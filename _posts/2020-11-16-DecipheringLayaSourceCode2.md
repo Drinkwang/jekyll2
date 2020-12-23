@@ -17,13 +17,13 @@ tags:
 
 * 上一讲我们讲解了Laya的Animation的模块，这一期界面我们将对Mesh.ts做更多考量
 
-前面的教程： https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html 
+前面的教程： [https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html](https://drinker.site/2020/11/02/DecipheringLayaSourceCode0.html) 
 
- 					   https://drinker.site/2020/11/09/DecipheringLayaSourceCode1.html 
+ 					   [https://drinker.site/2020/11/09/DecipheringLayaSourceCode1.html](https://drinker.site/2020/11/09/DecipheringLayaSourceCode1.html) 
 
 
 
-> laya官方案例:https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4
+> laya官方案例:[https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4](https://ldc2.layabox.com/doc/?language=zh&nav=zh-ts-0-3-4)
 
 
 

@@ -4,7 +4,7 @@ title:      假仙督道（八）
 subtitle:塞翁失马，焉知非福   
 date:       2021-10-2
 author:     俊壳
-header-img: img/jiadao-art.png
+header-img: img/post-sample-image.jpg
 catalog: true
 tags:
     - 假仙督道

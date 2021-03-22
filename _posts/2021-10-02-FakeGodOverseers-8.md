@@ -2,7 +2,7 @@
 layout:     post
 title:      假仙督道（八）
 subtitle:	新生选宿舍   
-date:       2021-10-02
+date:       2021-01-02
 author:     俊壳
 header-img: img/post-sample-image.jpg
 catalog: true

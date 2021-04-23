@@ -2,7 +2,7 @@
 layout:     post
 title:      第一次尝试Godot引擎
 subtitle:   业余学点东西
-date:       2021-4-24
+date:       2021-04-24
 author:     BYDrinker
 header-img: img/post-sample-image.jpg
 catalog: true

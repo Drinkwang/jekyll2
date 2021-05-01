@@ -4,7 +4,7 @@ title:      假仙督道（八）
 subtitle:	新生选宿舍   
 date:       2021-03-22
 author:     俊壳
-header-img: img/post-sample-image.jpg
+header-img: img/home-bg-art.jpg
 catalog: true
 tags:
     - 假仙督道

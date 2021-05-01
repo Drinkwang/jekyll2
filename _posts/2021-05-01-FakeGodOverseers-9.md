@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      假仙督道（九）
-subtitle:	新生选宿舍   
+subtitle:	宠物风波 
 date:       2021-05-01
 author:     俊壳
 header-img: img/post-sample-image.jpg

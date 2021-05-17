@@ -1,26 +1,31 @@
 ---
 layout:     post
 title:      第一次尝试Godot引擎
-subtitle:	业余学点东西   
-date:       2021-04-22
-author:     俊壳
-header-img: img/post-sample-image.jpg
+subtitle:   业余学点东西
+date:       2021-05-01
+author:     BYDrinker
+header-img: img/tag-bg-o.jpg
 catalog: true
 tags:
-    - 游戏引擎,Godot
+    - unity,unity3d
 ---
 
 
 
+# 第一次尝试Godot引擎
 
 > 今天来尝试下新引擎，从入门到入土
   很早就对Godot有所了解，一个用类似Python语言的开源游戏引擎(最近支持Mono)，不过我本身一直在使用U3d来写自己的项目，而在公司里则是用LayaBox完成自己所需要完成的工作(具体可以看我前几篇对Laya引擎源码解析的blog)，所以一直没有时间尝试这个引擎，今天手头逐渐空闲了下来，于是去下载尝试了一下。
 
   首先说结论，Godot是我接触过最简洁的游戏引擎，没有之一，引擎下载好后，可以看到只有一个可以运行的exe文件，引擎页面更是简洁，如果对unity有所了解一定能很快上手，并且里面的对象又是基于节点式的，对象都是基于一个节点产生的，不会有多余复杂的结构。
 
+![image]({{ "/assets/godot/openScene.png" | absolute_url }})
+
 2、场景和对象可以自由从属，哪怕如今的U3d已经出了在一个场景里进行场景并列，但是没有办法实现树状的从属，只能用预制体来代替。并且每一套东西都有自己额外的逻辑，又附带了多余的component。而Godot基于节点自由装配的形式就大大减轻了运行的消耗（尽管unity也准备推出类似自由装配的tiny，但是毕竟尾大甩不掉）
 
  3.开放，unity的成功是基于庞大的社区和用户的支持，所以这点在Godot有过之而无过及，插件通过类似git爬虫的形式搭建了个门户页面，基于Mit、Apache各式各样的协议..
+
+![image]({{ "/assets/godot/beganning.png" | absolute_url }})
 
 以上看上去，Godot确实是一个未来可期的游戏引擎，但我目前给出的评价也只是未来可期，缺点一样很明显
 
@@ -34,9 +39,9 @@ tags:
 
 ps：我也会尝试用它来开发新项目或者写gamejam
 
+![image]({{ "/assets/godot/glass.png" | absolute_url }})
 
-
-
+![image]({{ "/assets/godot/sward.png" | absolute_url }})
 
 ...
 

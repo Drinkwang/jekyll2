@@ -18,27 +18,29 @@ tags:
 
 > 这是我第二次写关于Godot有关的`Blog`，这次我们来学习下Godot里面的第一人称的案例
 
-首先我们二话不说直接运行游戏
+首先我们二话不说运行实例
 
 ![image]({{ "/assets/godot/beganning.png" | absolute_url }})
 
-...一段时间过来，我们就进入游戏的菜单的ui界面
+游戏我这里用文字口诉下构成，大概是一个界面，以及点击界面中的play进入一个第一人称场景
 
 ![image]({{ "/assets/godot/FirstPersonA/began.png" | absolute_url }})
 
-​	既然如此，我们就来了解下按键的一些设计，也就是`ui`有关的代码
+​	既然如此，我们就来了解下Ui，也就是`ui`有关的代码
 
 ![image]({{ "/assets/godot/FirstPersonA/playButton.png" | absolute_url }})
 
-直接贴代码，它是通过Inspector旁边的Node面板里进行嵌入绑定，有点类似于Qt的开发方式
+直接贴代码，它的按钮是通过Inspector旁边的Node面板里进行嵌入绑定，有点类似于Qt的开发方式
+
+![image]({{ "/assets/godot/FirstPersonA/bind.png" | absolute_url }})
 
 ```python
 extends Control
 
 export var start_scene = "test"
 
-func _play_game():
-	fader._fade_start(start_scene)
+func _play_game()://按钮点击进入的方法
+	fader._fade_start(start_scene)//淡出并加载test场景
 
 ```
 

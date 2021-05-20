@@ -18,19 +18,19 @@ tags:
 
 > 这是我第二次写关于Godot有关的`Blog`，这次我们来学习下Godot里面的第一人称的案例
 
-首先我们二话不说运行实例
+  首先我们二话不说运行实例
 
 ![image]({{ "/assets/godot/beganning.png" | absolute_url }})
 
-游戏我这里用文字口诉下构成，大概是一个界面，以及点击界面中的play进入一个第一人称场景
+  游戏我这里用文字口诉下构成，大概是一个界面，以及点击界面中的play进入一个第一人称场景
 
 ![image]({{ "/assets/godot/FirstPersonA/began.png" | absolute_url }})
 
-​	既然如此，我们就来了解下Ui，也就是`ui`有关的代码
+​  既然如此，我们就来了解下Ui，也就是`ui`有关的代码
 
 ![image]({{ "/assets/godot/FirstPersonA/playButton.png" | absolute_url }})
 
-直接贴代码，它的按钮是通过Inspector旁边的Node面板里进行嵌入绑定，有点类似于Qt的开发方式
+  直接贴代码，它的按钮是通过Inspector旁边的Node面板里进行嵌入绑定，有点类似于Qt的开发方式
 
 ![image]({{ "/assets/godot/FirstPersonA/bind.png" | absolute_url }})
 
@@ -44,7 +44,7 @@ func _play_game()://按钮点击进入的方法
 
 ```
 
-这里放出fader类底下的`_fade_start`方法
+  这里放出fader类底下的`_fade_start`方法
 
 
 ```python
@@ -58,11 +58,11 @@ func _fade_start(var scene_path):
 		_reload_scene()
 ```
 
-总体而言是通过这个判断是否有场景文件，在加载场景文件时候播放FadeIn和FadeOut来过度，最终通过定义器嵌入一个结束方法进行切换场景
+  总体而言是通过这个判断是否有场景文件，在加载场景文件时候播放FadeIn和FadeOut来过度，最终通过定义器嵌入一个结束方法进行切换场景
 
 ![image]({{ "/assets/godot/FirstPersonA/timeout.png" | absolute_url }})
 
-另外退出游戏也是大同小异的过程
+  另外退出游戏也是大同小异的过程  
 
 ```python
 extends Button
@@ -83,11 +83,11 @@ func _quit_game():
 
 
 
-接下来将讲讲游戏里的一些方法和设计
+  接下来将讲讲游戏里的一些方法和设计
 
 ![image]({{ "/assets/godot/FirstPersonA/openScene.png" | absolute_url }})
 
-首先是第一人控制相关的内容
+  首先是第一人控制相关的内容
 
 ```python
 extends KinematicBody
@@ -162,6 +162,6 @@ func _unhandled_input(event):
 		pivot.rotation.x = clamp(pivot.rotation.x, -1.2, 1.2)
 ```
 
-了解移动后，我们就可以了解下是如何触发物体的。
+  了解移动后，我们就可以了解下是如何触发物体的。
 ![image]({{ "/assets/godot/FirstPersonA/TriggerArea2.png" | absolute_url }})
-这些是通过如同之前一样的嵌入方法，嵌入到body_entered，通过_body_entered方法发送`emit_signal("player_entered")`信号, 然后进入player_entered事件中，具体的话还是需要大家去自己学习，因为大同小异，我这里也不过多介绍了
+  这些是通过如同之前一样的嵌入方法，嵌入到`body_entered`，通过`_body_entered`方法发送`emit_signal("player_entered")`信号, 然后进入被嵌入的`player_entered`方法中，具体的话还是需要大家去自己了解，因为大同小异，我这里也不过多介绍了。

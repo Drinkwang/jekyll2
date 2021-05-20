@@ -87,5 +87,81 @@ func _quit_game():
 
 ![image]({{ "/assets/godot/FirstPersonA/openScene.png" | absolute_url }})
 
-待续...
+首先是第一人控制相关的内容
 
+```python
+extends KinematicBody
+
+export var gravity = -30.0
+export var walk_speed = 8.0
+export var run_speed = 16.0
+export var jump_speed = 10.0
+export var mouse_sensitivity = 0.002
+export var acceleration = 4.0
+export var friction = 6.0
+export var fall_limit = -1000.0
+
+var pivot
+
+var playable = true
+var dir = Vector3.ZERO
+var velocity = Vector3.ZERO
+
+func _ready():
+	pivot = $pivot
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _physics_process(delta)://循环调用的物理系统
+	dir = Vector3.ZERO
+	var basis = global_transform.basis
+	if Input.is_action_pressed("move_forward")://当按下上键，前进
+		dir -= basis.z
+	if Input.is_action_pressed("move_back")://当按下下键，后退
+		dir += basis.z
+	if Input.is_action_pressed("move_left")://当按下左键，左边走
+		dir -= basis.x
+	if Input.is_action_pressed("move_right"):当按下右键，右边走
+		dir += basis.x
+	dir = dir.normalized()//将方向坐标归一化
+
+	var speed = walk_speed
+	if is_on_floor(): //如果在地面上
+		#this prevents you from sliding without messing up the is_on_ground() check//防止滑行，不受重力影响
+		velocity.y += gravity * delta / 100.0//重力
+		if Input.is_action_pressed("run"):
+			speed = run_speed
+		if Input.is_action_just_pressed("jump")://跳跃
+			velocity.y = jump_speed
+	else:
+		velocity.y += gravity * delta//重力
+
+	var hvel = velocity
+	hvel.y = 0.0
+
+	var target = dir * speed//目标方向等于方向乘上一个速度
+	var accel
+	if dir.dot(hvel) > 0.0:
+		accel = acceleration
+	else:
+		accel = friction
+	hvel = hvel.linear_interpolate(target, accel * delta)线性穿插，accel * delta>=1后移动到目标点
+	velocity.x = hvel.x
+	velocity.z = hvel.z
+	if playable:
+		velocity = move_and_slide(velocity, Vector3.UP, true)	//第一个参数是移动方向，第二个参数是确定什么是墙，第三个参数是表示是否会被斜坡卡住
+
+	#prevents infinite falling//跌落重新开始游戏
+	if translation.y < fall_limit and playable:
+		playable = false
+		fader._reload_scene()
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion and playable://接受到鼠标移动事件，且游戏开始时
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		pivot.rotate_x(-event.relative.y * mouse_sensitivity)//进行旋转操作
+		pivot.rotation.x = clamp(pivot.rotation.x, -1.2, 1.2)
+```
+
+了解移动后，我们就可以了解下是如何触发物体的。
+![image]({{ "/assets/godot/FirstPersonA/TriggerArea2.png" | absolute_url }})
+这些是通过如同之前一样的嵌入方法，嵌入到body_entered，通过_body_entered方法发送`emit_signal("player_entered")`信号, 然后进入player_entered事件中，具体的话还是需要大家去自己学习，因为大同小异，我这里也不过多介绍了

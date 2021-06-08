@@ -37,7 +37,339 @@ ecs框架大纲图：
 
 ## 框架理解
 
-待续...
+#### 1.安装方法
+
+##### 使用源码
+
+这个仓库可以直接通过git 链接来安装，只需要在`Packages/manifest.json`加入下面这一行就好
+
+```
+"com.leopotam.ecs": "https://github.com/Leopotam/ecs.git",
+```
+
+默认情况下将会安装上一个发行版，如果你需要最新正在开发的版本（“ trunk/developing” ），将`#develp`增加到链接的后面
+
+```
+"com.leopotam.ecs": "https://github.com/Leopotam/ecs.git#develop",
+```
+
+##### 使用源码
+
+如果你不想用这种这种方式安装，可以下载源码并使用
+
+# 主要部分
+
+## 组件-Component
+
+包含数据和少量（没有）逻辑
+
+```
+struct WeaponComponent {
+    public int Ammo;
+    public string GunName;
+}
+```
+
+> **注意!** 不要忘记手动初始化每个新组件的所有字段- 当回收到流时，它们将被重置为默认值。
+
+## 入口-Entity
+
+组件的容器，通过 实现`EcsEntity` 包装内部标识符
+
+```
+
+//在ecs框架的世界中(world字段)创建一个新的entity（入口）
+EcsEntity entity = _world.NewEntity ();
+
+// Get() 返回一个entity内的组件 ，如果组件不存在，则会新增一个
+ref Component1 c1 = ref entity.Get<Component1> ();
+ref Component2 c2 = ref entity.Get<Component2> ();
+
+// Del()从ecs移除一个组件.如果它是最后一个组件，ecs也会自动将其移除
+entity.Del<Component2> ();
+
+//将组件替换成一个新的组件，如果组件不存在，则会新加入一个
+var weapon = new WeaponComponent () { Ammo = 10, GunName = "Handgun" };
+entity.Replace (weapon);
+
+// 用 Replace() 方法你可以约束组件的创造：
+var entity2 = world.NewEntity ();
+entity2.Replace (new Component1 { Id = 10 }).Replace (new Component2 { Name = "Username" });
+
+// 任意 entity 都可以被复制(包括其中所有组件):
+var entity2Copy = entity2.Copy ();
+
+// 任意 组件可以被合入/移动到另外一个entity(原始的将会被销毁) 
+var newEntity = world.NewEntity ();
+entity2Copy.MoveTo (newEntity); // 所有 entity2Copy  的组件将会移动到newEntity, entity2Copy 将会销毁(destroyed).
+
+// 任意 entity 可以被销毁. 所有entity上的组件将会被先移除，然后entity再销毁
+entity.Destroy ();
+```
+
+> **注意!** Entities 没有 components 将会自动删除，在上一个 `EcsEntity.Del()` 调用时.
+>
+> 
+
+## System
+
+Сontainer for logic for processing filtered entities. User class should implements `IEcsInitSystem`, `IEcsDestroySystem`, `IEcsRunSystem` (or other supported) interfaces:
+
+```
+class UserSystem : IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsPostDestroySystem {
+    public void PreInit () {
+        // Will be called once during EcsSystems.Init() call and before IEcsInitSystem.Init.
+    }
+
+    public void Init () {
+        // Will be called once during EcsSystems.Init() call.
+    }
+    
+    public void Run () {
+        // Will be called on each EcsSystems.Run() call.
+    }
+
+    public void Destroy () {
+        // Will be called once during EcsSystems.Destroy() call.
+    }
+
+    public void PostDestroy () {
+        // Will be called once during EcsSystems.Destroy() call and after IEcsDestroySystem.Destroy.
+    }
+}
+```
+
+# Data injection
+
+All compatible `EcsWorld` and `EcsFilter<T>` fields of ecs-system will be auto-initialized (auto-injected):
+
+```
+class HealthSystem : IEcsSystem {
+    // auto-injected fields.
+    EcsWorld _world = null;
+    EcsFilter<WeaponComponent> _weaponFilter = null;
+}
+```
+
+Instance of any custom type can be injected to all systems through `EcsSystems.Inject()` method:
+
+```
+class SharedData {
+    public string PrefabsPath;
+}
+...
+var sharedData = new SharedData { PrefabsPath = "Items/{0}" };
+var systems = new EcsSystems (world);
+systems
+    .Add (new TestSystem1 ())
+    .Inject (sharedData)
+    .Init ();
+```
+
+Each system will be scanned for compatible fields (can contains all of them or no one) with proper initialization:
+
+```
+class TestSystem1 : IEcsInitSystem {
+    // auto-injected fields.
+    SharedData _sharedData;
+    
+    public void Init() {
+        var prefabPath = string.Format (_sharedData.Prefabspath, 123);
+        // prefabPath = "Items/123" here.
+    } 
+}
+```
+
+# Special classes
+
+## EcsFilter
+
+Container for keeping filtered entities with specified component list:
+
+```
+class WeaponSystem : IEcsInitSystem, IEcsRunSystem {
+    // auto-injected fields: EcsWorld instance and EcsFilter.
+    EcsWorld _world = null;
+    // We wants to get entities with "WeaponComponent" and without "HealthComponent".
+    EcsFilter<WeaponComponent>.Exclude<HealthComponent> _filter = null;
+
+    public void Init () {
+        _world.NewEntity ().Get<WeaponComponent> ();
+    }
+
+    public void Run () {
+        foreach (var i in _filter) {
+            // entity that contains WeaponComponent.
+            ref var entity = ref _filter.GetEntity (i);
+
+            // Get1 will return link to attached "WeaponComponent".
+            ref var weapon = ref _filter.Get1 (i);
+            weapon.Ammo = System.Math.Max (0, weapon.Ammo - 1);
+        }
+    }
+}
+```
+
+> **Important!** You should not use `ref` modifier for any filter data outside of foreach-loop over this filter if you want to destroy part of this data (entity or component) - it will break memory integrity.
+
+All components from filter `Include` constraint can be fast accessed through `EcsFilter.Get1()`, `EcsFilter.Get2()`, etc - in same order as they were used in filter type declaration.
+
+If fast access not required (for example, for flag-based components without data), component can implements `IEcsIgnoreInFilter` interface for decrease memory usage and increase performance:
+
+```
+struct Component1 { }
+
+struct Component2 : IEcsIgnoreInFilter { }
+
+class TestSystem : IEcsRunSystem {
+    EcsFilter<Component1, Component2> _filter = null;
+
+    public void Run () {
+        foreach (var i in _filter) {
+            // its valid code.
+            ref var component1 = ref _filter.Get1 (i);
+
+            // its invalid code due to cache for _filter.Get2() is null for memory / performance reasons.
+            ref var component2 = ref _filter.Get2 (i);
+        }
+    }
+}
+```
+
+> Important: Any filter supports up to 6 component types as "include" constraints and up to 2 component types as "exclude" constraints. Shorter constraints - better performance.
+
+> Important: If you will try to use 2 filters with same components but in different order - you will get exception with detailed info about conflicted types, but only in `DEBUG` mode. In `RELEASE` mode all checks will be skipped.
+
+## EcsWorld
+
+Root level container for all entities / components, works like isolated environment.
+
+> Important: Do not forget to call `EcsWorld.Destroy()` method when instance will not be used anymore.
+
+## EcsSystems
+
+Group of systems to process `EcsWorld` instance:
+
+```
+class Startup : MonoBehaviour {
+    EcsWorld _world;
+    EcsSystems _systems;
+
+    void Start () {
+        // create ecs environment.
+        _world = new EcsWorld ();
+        _systems = new EcsSystems (_world)
+            .Add (new WeaponSystem ());
+        _systems.Init ();
+    }
+    
+    void Update () {
+        // process all dependent systems.
+        _systems.Run ();
+    }
+
+    void OnDestroy () {
+        // destroy systems logical group.
+        _systems.Destroy ();
+        // destroy world.
+        _world.Destroy ();
+    }
+}
+```
+
+`EcsSystems` instance can be used as nested system (any types of `IEcsInitSystem`, `IEcsRunSystem`, ecs behaviours are supported):
+
+```
+// initialization.
+var nestedSystems = new EcsSystems (_world).Add (new NestedSystem ());
+// don't call nestedSystems.Init() here, rootSystems will do it automatically.
+
+var rootSystems = new EcsSystems (_world).Add (nestedSystems);
+rootSystems.Init ();
+
+// update loop.
+// don't call nestedSystems.Run() here, rootSystems will do it automatically.
+rootSystems.Run ();
+
+// destroying.
+// don't call nestedSystems.Destroy() here, rootSystems will do it automatically.
+rootSystems.Destroy ();
+```
+
+Any `IEcsRunSystem` or `EcsSystems` instance can be enabled or disabled from processing in runtime:
+
+```
+class TestSystem : IEcsRunSystem {
+    public void Run () { }
+}
+var systems = new EcsSystems (_world);
+systems.Add (new TestSystem (), "my special system");
+systems.Init ();
+var idx = systems.GetNamedRunSystem ("my special system");
+
+// state will be true here, all systems are active by default.
+var state = systems.GetRunSystemState (idx);
+
+// disable system from execution.
+systems.SetRunSystemState (idx, false);
+```
+
+# Engine integration
+
+## Unity
+
+> Tested on unity 2019.1 (not dependent on it) and contains assembly definition for compiling to separate assembly file for performance reason.
+
+[Unity editor integration](https://github.com/Leopotam/ecs-unityintegration) contains code templates and world debug viewer.
+
+## Custom engine
+
+> C#7.3 or above required for this framework.
+
+Code example - each part should be integrated in proper place of engine execution flow.
+
+```
+using Leopotam.Ecs;
+
+class EcsStartup {
+    EcsWorld _world;
+    EcsSystems _systems;
+
+    // Initialization of ecs world and systems.
+    void Init () {        
+        _world = new EcsWorld ();
+        _systems = new EcsSystems (_world);
+        _systems
+            // register your systems here, for example:
+            // .Add (new TestSystem1 ())
+            // .Add (new TestSystem2 ())
+            
+            // register one-frame components (order is important), for example:
+            // .OneFrame<TestComponent1> ()
+            // .OneFrame<TestComponent2> ()
+            
+            // inject service instances here (order doesn't important), for example:
+            // .Inject (new CameraService ())
+            // .Inject (new NavMeshSupport ())
+            .Init ();
+    }
+
+    // Engine update loop.
+    void UpdateLoop () {
+        _systems?.Run ();
+    }
+
+    // Cleanup.
+    void Destroy () {
+        if (_systems != null) {
+            _systems.Destroy ();
+            _systems = null;
+            _world.Destroy ();
+            _world = null;
+        }
+    }
+}
+```
 
 
 

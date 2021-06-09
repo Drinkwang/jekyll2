@@ -57,9 +57,9 @@ ecs框架大纲图：
 
 如果你不想用这种这种方式安装，可以下载源码并使用
 
-# 主要部分
+## 主要部分
 
-## 组件-Component
+### 组件-Component
 
 包含数据和少量（没有）逻辑
 
@@ -72,13 +72,13 @@ struct WeaponComponent {
 
 > **注意!** 不要忘记手动初始化每个新组件的所有字段- 当回收到流时，它们将被重置为默认值。
 
-## 入口-Entity
+### 实体-Entity
 
 组件的容器，通过 实现`EcsEntity` 包装内部标识符
 
 ```
 
-//在ecs框架的世界中(world字段)创建一个新的entity（入口）
+//在ecs框架的世界中(world字段)创建一个新的entity（实体）
 EcsEntity entity = _world.NewEntity ();
 
 // Get() 返回一个entity内的组件 ，如果组件不存在，则会新增一个
@@ -111,47 +111,47 @@ entity.Destroy ();
 >
 > 
 
-## System
+### 系统-System 
 
-Сontainer for logic for processing filtered entities. User class should implements `IEcsInitSystem`, `IEcsDestroySystem`, `IEcsRunSystem` (or other supported) interfaces:
+处理对应实体entities逻辑的容器，如果是User 类的话 就应该实现 `IEcsInitSystem`, `IEcsDestroySystem`, `IEcsRunSystem` (或者其它) 接口:
 
 ```
 class UserSystem : IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsPostDestroySystem {
     public void PreInit () {
-        // Will be called once during EcsSystems.Init() call and before IEcsInitSystem.Init.
+        //将会在EcsSystems.Init()以及IEcsInitSystem.Init之前被调用.
     }
 
     public void Init () {
-        // Will be called once during EcsSystems.Init() call.
+        //将会在 EcsSystems.Init() 调用时执行一次
     }
     
     public void Run () {
-        // Will be called on each EcsSystems.Run() call.
+        //将会在 每一次EcsSystems.Run()调用时执行
     }
 
     public void Destroy () {
-        // Will be called once during EcsSystems.Destroy() call.
+        //将会在 EcsSystems.Destroy() 调用时执行一次
     }
 
     public void PostDestroy () {
-        // Will be called once during EcsSystems.Destroy() call and after IEcsDestroySystem.Destroy.
+        // 将会在 EcsSystems.Destroy() 以及在IEcsDestroySystem.Destroy之后执行
     }
 }
 ```
 
-# Data injection
+## 数据注入
 
-All compatible `EcsWorld` and `EcsFilter<T>` fields of ecs-system will be auto-initialized (auto-injected):
+所有ecs系统底下兼容`EcsWorld` 和 `EcsFilter<T>` 的字段将会自动初始化 (自动注入):
 
 ```
 class HealthSystem : IEcsSystem {
-    // auto-injected fields.
+    // 这下面都是自动注入字段
     EcsWorld _world = null;
     EcsFilter<WeaponComponent> _weaponFilter = null;
 }
 ```
 
-Instance of any custom type can be injected to all systems through `EcsSystems.Inject()` method:
+任何通用类型的实例通过`EcsSystems.Inject()` 方法也可以被注入到任意一个系统中
 
 ```
 class SharedData {
@@ -166,7 +166,7 @@ systems
     .Init ();
 ```
 
-Each system will be scanned for compatible fields (can contains all of them or no one) with proper initialization:
+每一个系统都将会扫描兼容字段(可能包含或者没有的)，并用一个合适的值去初始化
 
 ```
 class TestSystem1 : IEcsInitSystem {
@@ -180,9 +180,9 @@ class TestSystem1 : IEcsInitSystem {
 }
 ```
 
-# Special classes
+## 特殊类型-Special classes
 
-## EcsFilter
+### Ecs过滤器-EcsFilter
 
 Container for keeping filtered entities with specified component list:
 
@@ -240,13 +240,13 @@ class TestSystem : IEcsRunSystem {
 
 > Important: If you will try to use 2 filters with same components but in different order - you will get exception with detailed info about conflicted types, but only in `DEBUG` mode. In `RELEASE` mode all checks will be skipped.
 
-## EcsWorld
+### Ecs世界-EcsWorld
 
 Root level container for all entities / components, works like isolated environment.
 
 > Important: Do not forget to call `EcsWorld.Destroy()` method when instance will not be used anymore.
 
-## EcsSystems
+### Ecs系统-EcsSystems
 
 Group of systems to process `EcsWorld` instance:
 
@@ -314,19 +314,19 @@ var state = systems.GetRunSystemState (idx);
 systems.SetRunSystemState (idx, false);
 ```
 
-# Engine integration
+# 引擎集成-Engine integration
 
 ## Unity
 
 > Tested on unity 2019.1 (not dependent on it) and contains assembly definition for compiling to separate assembly file for performance reason.
 
-[Unity editor integration](https://github.com/Leopotam/ecs-unityintegration) contains code templates and world debug viewer.
+[Unity editor integration](https://github.com/Leopotam/ecs-unityintegration) 包括代码案例和debug窗口
 
-## Custom engine
+## 其他引擎-Custom engine
 
-> C#7.3 or above required for this framework.
+> 需要框架支持C# 7.3或者更高
 
-Code example - each part should be integrated in proper place of engine execution flow.
+代码实例-每一部分都被在引擎工作流合适的位置持续化集成
 
 ```
 using Leopotam.Ecs;
@@ -373,7 +373,7 @@ class EcsStartup {
 
 
 
-## 项目理解
+#   项目理解
 
 我们来看看案例的代码，这样更好理解依赖注入的观念
 

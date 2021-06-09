@@ -31,9 +31,7 @@ ecs框架大纲图：
 
 具体游戏下载地址在这里：[cadfoot/unity-ecs-bubble-shooter (github.com)](https://github.com/cadfoot/unity-ecs-bubble-shooter)
 
-首先我们具体来看看Startup这个类，我们通过这个类来了解ecs的基本写法，上面我们提到过ecs是由多个系统 去处理实体，而实体的获取是通过组件进行获得的，具体获得方式就是autowire完成（依赖注入）
-
-` 依赖注入:整个项目需要获取实体的变量会通过‘流’来自动获取，玩家只需要将变量放置在框架流中，就无需关注其中细节，直接可以使用`
+首先我们先来理解框架，然后转到游戏代码来深入浅出。
 
 ## 框架理解
 
@@ -184,11 +182,11 @@ class TestSystem1 : IEcsInitSystem {
 
 ### Ecs过滤器-EcsFilter
 
-Container for keeping filtered entities with specified component list:
+保持用特定的组件列表过滤过的实体entity容器：
 
 ```
 class WeaponSystem : IEcsInitSystem, IEcsRunSystem {
-    // auto-injected fields: EcsWorld instance and EcsFilter.
+    // 自动注入字段:EcsWorld 实例和 ecs过滤器
     EcsWorld _world = null;
     // We wants to get entities with "WeaponComponent" and without "HealthComponent".
     EcsFilter<WeaponComponent>.Exclude<HealthComponent> _filter = null;
@@ -199,10 +197,10 @@ class WeaponSystem : IEcsInitSystem, IEcsRunSystem {
 
     public void Run () {
         foreach (var i in _filter) {
-            // entity that contains WeaponComponent.
+            //  包括WeaponComponent的entity.
             ref var entity = ref _filter.GetEntity (i);
 
-            // Get1 will return link to attached "WeaponComponent".
+            // Get1 将返回 一个绑定"WeaponComponent"的链接.
             ref var weapon = ref _filter.Get1 (i);
             weapon.Ammo = System.Math.Max (0, weapon.Ammo - 1);
         }
@@ -210,7 +208,7 @@ class WeaponSystem : IEcsInitSystem, IEcsRunSystem {
 }
 ```
 
-> **Important!** You should not use `ref` modifier for any filter data outside of foreach-loop over this filter if you want to destroy part of this data (entity or component) - it will break memory integrity.
+> **注意!** 如果你想销毁部分数据(实体或组件)，你不应该在这个过滤器的foreach循环之外对任何过滤器数据使用' ref '修饰符——它会破坏内存完整性。
 
 All components from filter `Include` constraint can be fast accessed through `EcsFilter.Get1()`, `EcsFilter.Get2()`, etc - in same order as they were used in filter type declaration.
 
@@ -242,9 +240,9 @@ class TestSystem : IEcsRunSystem {
 
 ### Ecs世界-EcsWorld
 
-Root level container for all entities / components, works like isolated environment.
+包括所有实体/组件的根节点容器。在孤立的环境的下进行工作
 
-> Important: Do not forget to call `EcsWorld.Destroy()` method when instance will not be used anymore.
+> 注意: 当instance不再被使用后，不要忘记调用`EcsWorld.Destroy()` 
 
 ### Ecs系统-EcsSystems
 
@@ -314,7 +312,7 @@ var state = systems.GetRunSystemState (idx);
 systems.SetRunSystemState (idx, false);
 ```
 
-# 引擎集成-Engine integration
+## 引擎集成-Engine integration
 
 ## Unity
 
@@ -376,6 +374,10 @@ class EcsStartup {
 #   项目理解
 
 我们来看看案例的代码，这样更好理解依赖注入的观念
+
+首先具体来看看Startup这个类，我们通过这个类来了解ecs的基本写法，上面我们提到过ecs是由多个系统 去处理实体，而实体的获取是通过组件进行获得的，具体获得方式就是autowire完成（依赖注入）
+
+` 依赖注入:整个项目需要获取实体的变量会通过‘流’来自动获取，玩家只需要将变量放置在框架流中，就无需关注其中细节，直接可以使用`
 
 ```c#
         private void Start()

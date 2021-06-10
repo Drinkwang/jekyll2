@@ -210,9 +210,9 @@ class WeaponSystem : IEcsInitSystem, IEcsRunSystem {
 
 > **注意!** 如果你想销毁部分数据(实体或组件)，你不应该在这个过滤器的foreach循环之外对任何过滤器数据使用' ref '修饰符——它会破坏内存完整性。
 
-All components from filter `Include` constraint can be fast accessed through `EcsFilter.Get1()`, `EcsFilter.Get2()`, etc - in same order as they were used in filter type declaration.
+过滤器约束的所有组件 可以通过 `EcsFilter.Get1()`, `EcsFilter.Get2()`  ..快速访问，与它们在过滤器类型声明中使用的顺序相同
 
-If fast access not required (for example, for flag-based components without data), component can implements `IEcsIgnoreInFilter` interface for decrease memory usage and increase performance:
+如果不需要快速访问 (比如基于标记但没有数据的组件),  组件可以实现 `IEcsIgnoreInFilte ` 接口减少内存使用并提升性能
 
 ```
 struct Component1 { }
@@ -234,9 +234,9 @@ class TestSystem : IEcsRunSystem {
 }
 ```
 
-> Important: Any filter supports up to 6 component types as "include" constraints and up to 2 component types as "exclude" constraints. Shorter constraints - better performance.
+> 注意: 一个过滤器支持最多6个“include”约束和最多2个"exclude" 约束. 少量的约束可以提供更棒的性能
 
-> Important: If you will try to use 2 filters with same components but in different order - you will get exception with detailed info about conflicted types, but only in `DEBUG` mode. In `RELEASE` mode all checks will be skipped.
+> 注意: 如果你尝试使用二种过滤器在不同命令中对同一个组件进行操作， 你将得到`冲突类型`的异常，但这仅仅是在debug模式下显示，在release模式下，这种检查将被跳过
 
 ### Ecs世界-EcsWorld
 
@@ -246,7 +246,7 @@ class TestSystem : IEcsRunSystem {
 
 ### Ecs系统-EcsSystems
 
-Group of systems to process `EcsWorld` instance:
+用作处理`EcsWorld` 实例的系统组合:
 
 ```
 class Startup : MonoBehaviour {
@@ -254,7 +254,7 @@ class Startup : MonoBehaviour {
     EcsSystems _systems;
 
     void Start () {
-        // create ecs environment.
+        // 创建ecs环境
         _world = new EcsWorld ();
         _systems = new EcsSystems (_world)
             .Add (new WeaponSystem ());
@@ -262,39 +262,39 @@ class Startup : MonoBehaviour {
     }
     
     void Update () {
-        // process all dependent systems.
+        // 处理所有依赖系统
         _systems.Run ();
     }
 
     void OnDestroy () {
-        // destroy systems logical group.
+        // 销毁系统逻辑组.
         _systems.Destroy ();
-        // destroy world.
+        // 销毁世界
         _world.Destroy ();
     }
 }
 ```
 
-`EcsSystems` instance can be used as nested system (any types of `IEcsInitSystem`, `IEcsRunSystem`, ecs behaviours are supported):
+`EcsSystems` 实例可以被作为嵌入的系统使用(任意的 `IEcsInitSystem`, `IEcsRunSystem`类型, ecs 行为是被支持的):
 
 ```
-// initialization.
+// 初始化
 var nestedSystems = new EcsSystems (_world).Add (new NestedSystem ());
-// don't call nestedSystems.Init() here, rootSystems will do it automatically.
 
+//这里不要调用 nestedSystems.Init(),根系统将会自动调用
 var rootSystems = new EcsSystems (_world).Add (nestedSystems);
 rootSystems.Init ();
 
-// update loop.
-// don't call nestedSystems.Run() here, rootSystems will do it automatically.
+// 循环更新
+// 这里不要调用nestedSystems.Run(),根系统将会自动调用
 rootSystems.Run ();
 
-// destroying.
-// don't call nestedSystems.Destroy() here, rootSystems will do it automatically.
+// 销毁
+// 这里不要调用nestedSystems.Destroy(),根系统将会自动调用
 rootSystems.Destroy ();
 ```
 
-Any `IEcsRunSystem` or `EcsSystems` instance can be enabled or disabled from processing in runtime:
+任意的 `IEcsRunSystem` or `EcsSystems` 实例 可以在实时处理中被enabled(开启)和disabled(关闭) 
 
 ```
 class TestSystem : IEcsRunSystem {
@@ -305,10 +305,10 @@ systems.Add (new TestSystem (), "my special system");
 systems.Init ();
 var idx = systems.GetNamedRunSystem ("my special system");
 
-// state will be true here, all systems are active by default.
+//state默认值是true，所有系统默认是active 
 var state = systems.GetRunSystemState (idx);
 
-// disable system from execution.
+// 在执行过程中关闭系统
 systems.SetRunSystemState (idx, false);
 ```
 

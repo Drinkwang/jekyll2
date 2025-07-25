@@ -10,6 +10,9 @@
         "url": "https://github.com/qiubaiying/qiubaiying.github.io"
     },
     "bugs": "https://github.com/qiubaiying/qiubaiying.github.io/issues",
+    "engines": {
+        "node": "18.x"
+    },
     "devDependencies": {
         "grunt": "~0.4.5",
         "grunt-contrib-less": "~0.11.4",

@@ -482,18 +482,18 @@ pre code {
     color: #0085a1;
   }
   .navbar-custom .dropdown-menu {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: #0085a1;
     border: 1px solid #f2f2f2;
   }
   .navbar-custom .dropdown-menu > li > a {
-    color: #333333;
+    color: white;
     padding: 10px 20px;
     font-size: 12px;
   }
   .navbar-custom .dropdown-menu > li > a:hover,
   .navbar-custom .dropdown-menu > li > a:focus {
-    color: #0085a1;
-    background-color: transparent;
+    color: #f0f0f0;
+    background-color: rgba(0, 0, 0, 0.1);
   }
   .navbar-custom.is-fixed .nav li a {
     color: #333333;

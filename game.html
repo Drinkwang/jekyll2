@@ -25,40 +25,108 @@ header-img: "img/post-bg-rwd.jpg"
 	 <!-- Friends Blog -->
                 {% if site.games %}
                 <hr>
-                <h5>Games</h5>
+                <h5>游戏分类</h5>
+                <style>
+                    .game-categories {
+                        margin: 20px 0;
+                        text-align: center;
+                    }
+                    .game-categories .btn {
+                        margin: 0 10px;
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        border-radius: 5px;
+                    }
+                    .section-title {
+                        margin-top: 30px;
+                        padding-bottom: 10px;
+                        border-bottom: 2px solid #eee;
+                    }
+                </style>
+                <div class="game-categories">
+                    <a href="#online-games" class="btn btn-primary">上线游戏</a>
+                    <a href="#experimental-games" class="btn btn-info">试验品游戏</a>
+                </div>
+                
+                <hr id="online-games">
+                <h5>上线游戏</h5>
+                <!-- 上线游戏列表 -->
                 <ul class="list-inline">
                     {% for game in site.games %}
-						<div style="height:2px;border-bottom:1px #ccc solid;"></div>
-						<li><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
-						<br/>
-						<div>
-						</div>
-						<a href="{{ game.href }}"	style="float:left">
-                        <img style="text-align:left"	src="{{game.image}}"/>
-                        </a>
-						
-						<li><div style="font-weight: bold;display: inline;">ps:</div>{{game.words}}</li>
-						<li><div style="font-weight: bold;display: inline;">开发状态:</div>{{game.status}}</li>
-						<br/>
-						<li><div style="font-weight: bold;display: inline;">游戏地址:</div>
-						{% if game.href %}
-						<a href="{{game.href}}">访问</a>
-						{% else %}
-						<s>}">暂时无法访问</s>
-						{% endif %}
-						</li>			
-						<br/>
+                        {% if game.status == "completed" %}
+                            <div style="height:2px;border-bottom:1px #ccc solid;"></div>
+                            <li><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
+                            <br/>
+                            <div>
+                            </div>
+                            <a href="{{ game.href }}"	style="float:left">
+                            <img style="text-align:left"	src="{{game.image}}"/>
+                            </a>
+                            
+                            <li><div style="font-weight: bold;display: inline;">ps:</div>{{game.words}}</li>
+                            <li><div style="font-weight: bold;display: inline;">开发状态:</div>{{game.status}}</li>
+                            <br/>
+                            <li><div style="font-weight: bold;display: inline;">游戏地址:</div>
+                            {% if game.href %}
+                            <a href="{{game.href}}">访问</a>
+                            {% else %}
+                            <s>}">暂时无法访问</s>
+                            {% endif %}
+                            </li>			
+                            <br/>
 
-						{% if game.reserved1 != "null" %}
-						{{game.reserved1}}
-						{% else %}
-						{% endif %}
-						<br/>
-						{% if game.reserved2 != "null" %}
-						{{game.reserved2}}
-						{% else %}
-						{% endif %}
-						<br/>
+                            {% if game.reserved1 != "null" %}
+                            {{game.reserved1}}
+                            {% else %}
+                            {% endif %}
+                            <br/>
+                            {% if game.reserved2 != "null" %}
+                            {{game.reserved2}}
+                            {% else %}
+                            {% endif %}
+                            <br/>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                
+                <hr id="experimental-games">
+                <h5>试验品游戏</h5>
+                <!-- 试验品游戏列表 -->
+                <ul class="list-inline">
+                    {% for game in site.games %}
+                        {% if game.status != "completed" %}
+                            <div style="height:2px;border-bottom:1px #ccc solid;"></div>
+                            <li><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
+                            <br/>
+                            <div>
+                            </div>
+                            <a href="{{ game.href }}"	style="float:left">
+                            <img style="text-align:left"	src="{{game.image}}"/>
+                            </a>
+                            
+                            <li><div style="font-weight: bold;display: inline;">ps:</div>{{game.words}}</li>
+                            <li><div style="font-weight: bold;display: inline;">开发状态:</div>{{game.status}}</li>
+                            <br/>
+                            <li><div style="font-weight: bold;display: inline;">游戏地址:</div>
+                            {% if game.href %}
+                            <a href="{{game.href}}">访问</a>
+                            {% else %}
+                            <s>}">暂时无法访问</s>
+                            {% endif %}
+                            </li>			
+                            <br/>
+
+                            {% if game.reserved1 != "null" %}
+                            {{game.reserved1}}
+                            {% else %}
+                            {% endif %}
+                            <br/>
+                            {% if game.reserved2 != "null" %}
+                            {{game.reserved2}}
+                            {% else %}
+                            {% endif %}
+                            <br/>
+                        {% endif %}
                     {% endfor %}
                 </ul>
                 {% endif %}

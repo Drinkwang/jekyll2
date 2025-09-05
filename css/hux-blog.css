@@ -323,7 +323,7 @@ pre code {
     position: absolute;
     right: 0;
     border: none;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
     box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.239216) 0px 1px 4px;
     border-radius: 2px;
@@ -386,8 +386,8 @@ pre code {
   }
 }
 .navbar-custom {
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #f2f2f2;
   position: absolute;
   top: 0;
   left: 0;
@@ -402,12 +402,12 @@ pre code {
 }
 .navbar-custom .navbar-brand {
   font-weight: 800;
-  color: white;
+  color: #333333;
   height: 56px;
   line-height: 25px;
 }
 .navbar-custom .navbar-brand:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: #0085a1;
 }
 .navbar-custom .nav li a {
   text-transform: uppercase;
@@ -415,34 +415,36 @@ pre code {
   line-height: 20px;
   font-weight: 800;
   letter-spacing: 1px;
+  color: #333333;
 }
 .navbar-custom .nav li a:active {
   background: rgba(0, 0, 0, 0.12);
 }
 @media only screen and (min-width: 768px) {
   .navbar-custom {
-    background: transparent;
-    border-bottom: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #f2f2f2;
   }
   .navbar-custom body {
     font-size: 20px;
   }
   .navbar-custom .navbar-brand {
-    color: white;
+    color: #333333;
     padding: 20px;
     line-height: 20px;
   }
   .navbar-custom .navbar-brand:hover,
   .navbar-custom .navbar-brand:focus {
-    color: rgba(255, 255, 255, 0.8);
+    color: #0085a1;
   }
   .navbar-custom .nav li a {
-    color: white;
+    color: #333333;
     padding: 20px;
   }
   .navbar-custom .nav li a:hover,
   .navbar-custom .nav li a:focus {
-    color: rgba(255, 255, 255, 0.8);
+    color: #0085a1;
+    background-color: transparent;
   }
   .navbar-custom .nav li a:active {
     background: none;
@@ -466,25 +468,40 @@ pre code {
     /* when the user scrolls down, we hide the header right above the viewport */
     position: fixed;
     top: -61px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
     border-bottom: 1px solid #f2f2f2;
     -webkit-transition: -webkit-transform 0.3s;
     -moz-transition: -moz-transform 0.3s;
     transition: transform 0.3s;
   }
   .navbar-custom.is-fixed .navbar-brand {
-    color: #404040;
+    color: #333333;
   }
   .navbar-custom.is-fixed .navbar-brand:hover,
   .navbar-custom.is-fixed .navbar-brand:focus {
     color: #0085a1;
   }
+  .navbar-custom .dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #f2f2f2;
+  }
+  .navbar-custom .dropdown-menu > li > a {
+    color: #333333;
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  .navbar-custom .dropdown-menu > li > a:hover,
+  .navbar-custom .dropdown-menu > li > a:focus {
+    color: #0085a1;
+    background-color: transparent;
+  }
   .navbar-custom.is-fixed .nav li a {
-    color: #404040;
+    color: #333333;
   }
   .navbar-custom.is-fixed .nav li a:hover,
   .navbar-custom.is-fixed .nav li a:focus {
     color: #0085a1;
+    background-color: transparent;
   }
   .navbar-custom.is-visible {
     /* if the user changes the scrolling direction, we show the header */

@@ -111,7 +111,24 @@ friends: [
 
 #Games
 games: [
-
+    {
+        title: "深空孤影/Lone Echo in Deep Space",
+        image: "/assets/game/deepspace.png",
+        status: "completed",
+        words: "一款太空探险游戏，玩家将在深空中探索未知的星球和神秘的太空站。",
+        href: "https://store.steampowered.com/app/2593650",
+        reserved1: "<div style=\"font-weight: bold;display: inline;\" >Steam商店页面：</div><a href=\"https://store.steampowered.com/app/2593650\" >https://store.steampowered.com/app/2593650</a>",
+        reserved2: "null"
+    },
+    {
+        title: "未命名项目/Unnamed Project",
+        image: "/assets/game/unnamed.png",
+        status: "devolopment",
+        words: "一个正在开发中的新项目，敬请期待。",
+        href: "https://store.steampowered.com/app/3155310/_/",
+        reserved1: "<div style=\"font-weight: bold;display: inline;\" >Steam商店页面：</div><a href=\"https://store.steampowered.com/app/3155310/_/\" >https://store.steampowered.com/app/3155310/_/</a>",
+        reserved2: "null"
+    },
     {
         title: "古堡洞穴/the Cave",
         image: "/assets/game/caveEvil.png",

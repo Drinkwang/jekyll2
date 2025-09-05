@@ -1,0 +1,106 @@
+---
+layout: page
+title: "试验品游戏"
+description: "这里是试验品游戏作品集合."
+header-img: "img/post-bg-rwd.jpg"
+---
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+
+    <!--copied from markdown -->
+    <blockquote><p>这里展示的是试验品游戏，包括开发中、原型阶段的游戏作品<br>
+    </blockquote>
+
+    <!-- Games List -->
+    {% if site.games %}
+    <hr>
+    <h5>试验品游戏列表</h5>
+    <ul class="list-inline">
+        {% for game in site.games %}
+            {% if game.status != "completed" %}
+                <div style="height:2px;border-bottom:1px #ccc solid;"></div>
+                <li><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
+                <br/>
+                <div>
+                </div>
+                <a href="{{ game.href }}"	style="float:left">
+                <img style="text-align:left"	src="{{game.image}}"/>
+                </a>
+                
+                <li><div style="font-weight: bold;display: inline;">ps:</div>{{game.words}}</li>
+                <li><div style="font-weight: bold;display: inline;">开发状态:</div>{{game.status}}</li>
+                <br/>
+                <li><div style="font-weight: bold;display: inline;">游戏地址:</div>
+                {% if game.href %}
+                <a href="{{game.href}}">访问</a>
+                {% else %}
+                <s>}">暂时无法访问</s>
+                {% endif %}
+                </li>			
+                <br/>
+
+                {% if game.reserved1 != "null" %}
+                {{game.reserved1}}
+                {% else %}
+                {% endif %}
+                <br/>
+                {% if game.reserved2 != "null" %}
+                {{game.reserved2}}
+                {% else %}
+                {% endif %}
+                <br/>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <ul>
+        <li><a href="https://github.com">GitHub</a></li>
+        <li><a href="http://jekyll.com.cn/">jekyll</a></li>
+        <li><a href="http://huangxuan.me/">Hux</a></li> 
+        <li><a href="https://analytics.google.com/analytics">Google Analytics</a></li>
+    </ul>
+</div>
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+
+    // Changes at v1.8.1: include lang flag as a url query. This interop well with catalog hash anchors.
+    // && (lang !== "")
+    // detect lang from hash
+    // var lang = self.location.hash.match(/lang=(\w+)/i);
+    // lang = (lang && lang[1]) || "";
+    // // then detect lang from url query
+    // var lang = self.location.search.match(/lang=(\w+)/i);
+    // lang = (lang && lang[1]) || "";
+    // // then detect lang from cookie
+    // var lang = getCookie("onLanChange_Language");
+    // lang = lang || (navigator.language && navigator.language.match(/zh/i) ? "zh" : "");
+
+    // set a cookie for future lang setting
+    // document.cookie = "onLanChange_Language=" + lang;
+    // // if lang is not set, set it to default: en
+    // if(lang == ""){
+    //     lang = "zh"
+    // }
+    // // set lang
+    // self.location.href = updateQueryString('lang', lang);
+
+    function onLanChange(index){
+        if(index == 0){
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }else{
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        }
+    }
+
+    // init
+    // _render();
+</script>

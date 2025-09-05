@@ -490,6 +490,9 @@ pre code {
     padding: 10px 20px;
     font-size: 12px;
   }
+  .navbar-custom.is-fixed .dropdown-menu > li > a {
+    color: #333333;
+  }
   .navbar-custom .dropdown-menu > li > a:hover,
   .navbar-custom .dropdown-menu > li > a:focus {
     color: #f0f0f0;

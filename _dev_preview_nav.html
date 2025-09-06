@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navbar Dropdown Preview</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/hux-blog.min.css" />
+  <style>
+    /* Fake hero header to reproduce non-fixed navbar state */
+    .intro-header{background:#333 url('/img/home-bg.jpg') center/cover no-repeat; height: 260px;}
+    body{margin:0}
+    .preview-container{padding:20px}
+  </style>
+</head>
+<body>
+  <!-- simplified nav injection from _includes/nav.html -->
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#huxblog_navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Preview</a>
+      </div>
+      <div id="huxblog_navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">HOME</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">桌游 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">德州扑克</a></li>
+              <li><a href="#">三国杀</a></li>
+              <li><a href="#">狼人杀</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">更多</a></li>
+            </ul>
+          </li>
+          <li><a href="#">ABOUT</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="intro-header"></header>
+
+  <div class="preview-container">
+    <p>打开上方“桌游”下拉，验证：1) 下拉菜单背景为白色；2) 菜单文字为深色；3) hover 为主题色；4) 滚动页面后（菜单变为 is-fixed）仍保持可见。</p>
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script>
+    // 模拟滚动到顶部的样式（非固定）: hux 主题在 >=1170px 才追加 is-fixed
+    // 此页面用于肉眼比对，不强制控制 is-fixed 逻辑。
+  </script>
+</body>
+</html>

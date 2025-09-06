@@ -114,6 +114,7 @@ games: [
     {
         title: "深空孤影",
         image: "/assets/game/deepspace.png",
+        page: "main",
         status: "completed",
         words: "《深空孤影》是一款我独立完成美术、音效、配音、程序的第一人称抽象的恐怖游戏。游戏中充满一系列 轻探索内容，玩家可以自由探索关卡，利用bug(特性)和正常方式通关，探索不同的线路。 玩家扮演一个对真相无比热衷的记者，意外得知某个失踪科学家的消息，于是你驾车前往郊外，孤身一人寻找藏匿黑暗的真相，面对谜题和挑战，你拥有多种不同的过关方式，寻找并使用你的工具和武器，击败boss、克服恐惧、不屈不挠，活着逃出生天。",
         href: "https://store.steampowered.com/app/2593650",
@@ -123,6 +124,7 @@ games: [
     {
         title: "阴三国谋论",
         image: "/assets/game/unnamed.png",
+        page: "main",
         status: "devolopment",
         words: "一个正在开发中的新项目，敬请期待。",
         href: "https://store.steampowered.com/app/3155310/_/",
@@ -132,6 +134,7 @@ games: [
     {
         title: "古堡洞穴/the Cave",
         image: "/assets/game/caveEvil.png",
+        page: "test",
         status: "完成但试验",
         words: "(个人作品)这是大一时候制作一款解密类型游戏，游戏整体比较单挑，其实最早创意是通过手机扫描电脑游戏的图案配合过关的，但因为一些原因搁置了...",
         en: "This is a freshman to make a decryption type of game, the overall comparison of the game is simple, in fact, the creative is through phone scanning game photo with clearance, but because of some reason put aside...",
@@ -142,6 +145,7 @@ games: [
     {
         title: "王傲世的梦/dream day",
         image: "/assets/game/dreamday.png",
+        page: "test",
         status: "完成但试验",
         words: "(个人作品)某天看《一人之下》漫画有感，根据一部分章节剧情制作，大概讲的是，有个程序员沉睡在自己梦中的世界不愿意面对现实，我想我那个时候的状态也有点类似吧...（虽然我比故事的那个角色颜值要高一些）",
         href: "http://www.4399.com/flash/200403.htm",
@@ -151,6 +155,7 @@ games: [
         {
         title: "一往无前/The man who never backs",
         image: "/assets/game/neverback.png",
+        page: "test",
         status: "完成但试验",
         words: "(合作开发)原画：老鸽子，编程：俊壳...一个群内gamejam作品的延申，最早是希望做成一个卡牌游戏的，但是不知不觉就搞成一个动作蓄力游戏了...目前已经开发完成，上架了4399、想玩可以点击图片或链接",
         href: "http://www.4399.com/flash/215549.htm",
@@ -160,6 +165,7 @@ games: [
     {
         title: "都是你的错/All‘s your Fault",
         image: "/assets/game/AllsyourFault.png",
+        page: "test",
         status: "devolopment",
         words: "(个人作品)Weplay 2020的gamejam作品，纯sole作品，sole太难了，真希望不solo，但它基本满足了我上面说的制作卡牌游戏的欲望，这个作品是我目前框架最完整的一个，应该会做完吧..",
         href: "https://www.youxibd.com/gamejam/cgjcyber2020/detail/510",
@@ -168,6 +174,7 @@ games: [
     },{
         title: "星际银河-快递时代/Star Courier",
         image: "/assets/game/StarCourier.png",
+        page: "test",
         status: "prototype",
         words: "(个人作品)看银河英雄传说有感,希望做一个太空歌剧游戏，但是希望能以一个很普通角色的视角来看待一段历史，类似死亡搁浅？通过一个快递员的视角，经历了若干个帝国的兴衰",
         reserved1: "<div style=\"font-weight: bold;display: inline;\" >源代码：</div><a href=\"https://github.com/Drinkwang/Star-Courier\" >https://github.com/Drinkwang/Star-Courier</a>",
@@ -176,7 +183,8 @@ games: [
     },{
         title: "RopeSkipperKing",
         image: "/assets/game/RopeSkipperKing.png",
-        status: "朋友作品，完成",
+        page: "test",
+        status: "朋友作品",
         words: "(朋友作品)This is a pretty simple relaxing game, you just tap to jump to chanllenge your own record.This is the remastered vesion of my first unity game 1 year before.",
         href: "https://doveking.itch.io/ropeskipperking",
         reserved1: "null",
@@ -186,6 +194,7 @@ games: [
     {
         title: "一个不知名的作品/nothing",
         image: "/assets/game/neverMind.png",
+        page: "test",
         status: "completed",
         words: "(合作开发)群内朋友联合进行开发的作品，差不多是一个13人接力作，也是对游戏开发的一次尝试...",
         href: "https://www.bilibili.com/video/BV1Z5411a7J9",
@@ -195,6 +204,7 @@ games: [
     {
         title: "待制作",
         image: "/assets/game/mark.png",
+        page: "test",
         status: "prototype",
         words: "我有很多想自己做的游戏,但是人的精力毕竟是有限的。希望能在有限的岁月里，做出一部算是精品的游戏，满足儿时的梦想",
         reserved1: "null",

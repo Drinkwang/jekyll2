@@ -18,7 +18,7 @@ header-img: "img/post-bg-rwd.jpg"
     <h5>完整品游戏列表</h5>
     <ul class="list-inline">
         {% for game in site.games %}
-            {% if game.status == "completed" %}
+            {% if game.page == "main" %}
                 <div style="height:2px;border-bottom:1px #ccc solid;"></div>
                 <li><div style="font-weight: bold;display: inline;">{{game.title}}</div</li>
                 <br/>

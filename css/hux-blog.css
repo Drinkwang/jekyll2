@@ -485,6 +485,10 @@ pre code {
     background-color: #0085a1;
     border: 1px solid #f2f2f2;
   }
+  .navbar-custom.is-fixed .dropdown-menu {
+    background-color: white;
+    border: 1px solid #f2f2f2;
+  }
   .navbar-custom .dropdown-menu > li > a {
     color: white;
     padding: 10px 20px;

@@ -15,17 +15,19 @@ header-img: "img/post-bg-rwd.jpg"
 <div class="zh post-container">
 
     <!--copied from markdown -->
-    <blockquote><p>这里展示的是各种桌游作品和相关内容<br>
-    </blockquote>
+    <blockquote><p>欢迎来到我的桌游世界！这里收录了我个人设计开发的桌游作品，包含详细的游戏规则说明和玩法介绍。<br>
+    希望这些游戏能为您带来愉快的游戏体验！</p></blockquote>
 
+    <div class="game-intro">
+        <h3>🎲 桌游作品集</h3>
+        <p>以下是我精心设计的桌游作品，每款游戏都经过反复测试和优化，力求为玩家提供最佳的游戏体验。</p>
+    </div>
 
-    
-
-
-	 <!-- Friends Blog -->
+	 <!-- Games Collection -->
                 {% if site.games %}
                 <hr>
-                <h5>仕诡牌</h5>
+                <h4>🃏 仕诡牌 (Shi Gui Pai)</h4>
+                <p class="game-subtitle">一款策略性卡牌游戏，考验玩家的资源管理和决策能力</p>
                 <style>
                     .game-categories {
                         margin: 20px 0;
@@ -37,68 +39,202 @@ header-img: "img/post-bg-rwd.jpg"
                         font-size: 16px;
                         border-radius: 5px;
                     }
+                    .game-intro {
+                        margin: 30px 0;
+                        padding: 20px;
+                        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                        border-radius: 10px;
+                        text-align: center;
+                    }
+                    .game-subtitle {
+                        font-style: italic;
+                        color: #666;
+                        margin-bottom: 20px;
+                    }
+                    .rules-section {
+                        background-color: #f8f9fa;
+                        padding: 25px;
+                        border-radius: 8px;
+                        margin: 20px 0;
+                        border-left: 4px solid #0085a1;
+                    }
+                    .rules-section h6 {
+                        color: #0085a1;
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                        font-weight: bold;
+                    }
+                    .rules-section h6:first-child {
+                        margin-top: 0;
+                    }
+                    .game-tips {
+                        background-color: #e8f4f8;
+                        padding: 15px;
+                        border-radius: 5px;
+                        margin-top: 20px;
+                        border: 1px solid #bee5eb;
+                    }
+                    .variant-intro {
+                        font-style: italic;
+                        color: #666;
+                        margin-bottom: 20px;
+                    }
                     .boardgame-list {
                         margin-top: 30px;
                     }
                     .boardgame-item {
                         margin-bottom: 30px;
-                        padding: 20px;
-                        border-radius: 5px;
-                        background-color: #f8f9fa;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                        padding: 25px;
+                        border-radius: 8px;
+                        background-color: #ffffff;
+                        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                        border: 1px solid #e9ecef;
+                        transition: transform 0.2s ease, box-shadow 0.2s ease;
+                    }
+                    .boardgame-item:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
                     }
                     .boardgame-item h4 {
                         color: #0085a1;
                         margin-top: 0;
+                        font-size: 1.5em;
+                        border-bottom: 2px solid #0085a1;
+                        padding-bottom: 10px;
+                        margin-bottom: 15px;
                     }
                     .boardgame-item p {
-                        margin: 10px 0;
+                        margin: 12px 0;
+                        line-height: 1.6;
                     }
                     .boardgame-item .badge {
                         background-color: #0085a1;
-                        margin-right: 5px;
+                        margin-right: 8px;
+                        margin-bottom: 5px;
+                        padding: 5px 10px;
+                        border-radius: 15px;
+                        font-size: 0.85em;
+                    }
+                    .effect-placeholder {
+                        background-color: #fff3cd;
+                        color: #856404;
+                        padding: 8px 12px;
+                        border-radius: 4px;
+                        font-style: italic;
+                        border: 1px solid #ffeaa7;
                     }
                 </style>
                 
                 <hr>
-                <h5>基础规则介绍</h5>
-                <p>欢迎体验这款卡牌游戏！让我带您快速了解规则！游戏准备：将每个卡牌1-10挑选出来 作为牌堆，并把k放在场上作为从属卡,每回合开始，进入发牌阶段，每个从属卡会收到一张“需求卡”（从牌堆获取）。玩家将抽牌抽到4，你的手牌则称为“资源卡”，每回合可以打出最多4张资源卡到从属上。如果出牌阶段打出的资源卡和从属上的需求卡匹配，就能一起消除并得分，并且你将额外获得从属头顶上的资源，代表其产出的资源！但如果从属上的牌是在发牌阶达到2张，不仅不会获得分数，还要支付从属花色上的资源作为惩罚。没有对应资源时，可以用“民心卡(红桃)”代替支付惩罚；如果连民心卡都没有，就得扣1点体力值。所以，民心卡非常重要！坚持到第5回合结束，你就胜利了！提示：合理管理资源和民心卡，优先匹配需求，避免惩罚。准备好，马上开始吧！</p>
-                <h5>变体规则介绍，以下卡牌可以加入游戏也可以不加入游戏</h5>
-                <div class="boardgame-list">
-                    <div class="boardgame-item">
-                        <h4>J</h4>
-                        <p><span class="badge">武器牌</span> <span class="badge">道具牌</span></p>
-                        <p>当得分区拥有四种不同花色，可以移出四张卡牌进入废弃区，将一张武器牌加入手卡</p>
-                        <p>武器卡发动直接进入得分区，充当40点得分，并根据武器类型执行额外效果</p>
-                        <p>红桃：待编辑，黑桃：待编辑，梅花：待编辑，方块：待编辑</p>
-                    </div>
+                <h5>📋 基础规则介绍</h5>
+                <div class="rules-section">
+                    <h6>🎯 游戏目标</h6>
+                    <p>合理管理资源，满足从属需求，坚持到第5回合结束即可获胜！</p>
                     
-                    <div class="boardgame-item">
-                        <h4>Q</h4>
-                        <p><span class="badge">诡异牌</span> <span class="badge">新的场景坐标</span></p>
-                        <p>可以放在场景中充当新的从属卡，玩家如果达到二张执行额外的效果</p>
-                        <p>当从属上 达到2张（无论是发牌阶段还是出牌阶段），则消除同色卡牌，根据从属的花色执行额外的效果，此处消除的卡牌不进入得分区，而是废弃区</p>
-                        <p>红桃：待编辑，黑桃：待编辑，梅花：待编辑，方块：待编辑</p>
-                    </div>
-
-                    <div class="boardgame-item">
-                        <h4>大小王</h4>
-                        <p><span class="badge">万能牌</span> <span class="badge">万用卡</span></p>
-                        <p>大王可以充当红色卡</p>
-                        <p>小王可以充当黑色卡</p>
-                        <p>获得额外得分+10点</p>
-                    </div>
+                    <h6>🃏 游戏准备</h6>
+                    <ul>
+                        <li>将数字卡牌1-10作为牌堆</li>
+                        <li>将K牌放在场上作为从属卡</li>
+                        <li>每位玩家初始体力值为5点</li>
+                    </ul>
                     
-
+                    <h6>🔄 游戏流程</h6>
+                    <ol>
+                        <li><strong>发牌阶段：</strong>每个从属卡获得一张"需求卡"（从牌堆抽取）</li>
+                        <li><strong>抽牌阶段：</strong>玩家抽牌至手牌4张，这些称为"资源卡"</li>
+                        <li><strong>出牌阶段：</strong>每回合最多可打出4张资源卡到从属上</li>
+                        <li><strong>结算阶段：</strong>检查匹配情况并计分</li>
+                    </ol>
+                    
+                    <h6>💎 得分机制</h6>
+                    <ul>
+                        <li><strong>成功匹配：</strong>资源卡与需求卡匹配时，两张卡牌消除并得分</li>
+                        <li><strong>额外奖励：</strong>匹配成功还能获得从属产出的额外资源</li>
+                    </ul>
+                    
+                    <h6>⚠️ 惩罚机制</h6>
+                    <ul>
+                        <li><strong>堆积惩罚：</strong>从属上累积2张卡牌时触发惩罚</li>
+                        <li><strong>资源支付：</strong>需支付对应花色的资源作为惩罚</li>
+                        <li><strong>民心替代：</strong>没有对应资源时，可用"民心卡"(红桃)代替</li>
+                        <li><strong>体力扣除：</strong>无法支付惩罚时，扣除1点体力值</li>
+                    </ul>
+                    
+                    <div class="game-tips">
+                        <h6>💡 游戏提示</h6>
+                        <ul>
+                            <li>民心卡(红桃)是万能资源，要合理保存</li>
+                            <li>优先匹配需求，避免卡牌堆积</li>
+                            <li>注意资源平衡，不要过度消耗某种花色</li>
+                            <li>提前规划，预判下回合的需求</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <p>更多变体规则将陆续更新，敬请期待！</p>
+                <h5>🎭 进阶变体规则</h5>
+                <p class="variant-intro">以下特殊卡牌为可选内容，可根据玩家喜好和游戏难度需求选择性加入：</p>
+                <div class="boardgame-list">
+                    <div class="boardgame-item">
+                        <h4>🗡️ J - 武器牌</h4>
+                        <p><span class="badge">武器牌</span> <span class="badge">道具牌</span></p>
+                        <p><strong>获取条件：</strong>当得分区拥有四种不同花色时，可以移出四张卡牌进入废弃区，将一张武器牌加入手卡</p>
+                        <p><strong>使用效果：</strong>武器卡发动后直接进入得分区，提供40点得分，并根据武器类型执行额外效果</p>
+                        <p><strong>花色效果：</strong></p>
+                        <ul>
+                            <li>♥️ 红桃：<span class="effect-placeholder">恢复体力或增加民心资源</span></li>
+                            <li>♠️ 黑桃：<span class="effect-placeholder">强制清除对手从属卡牌</span></li>
+                            <li>♣️ 梅花：<span class="effect-placeholder">额外抽取资源卡</span></li>
+                            <li>♦️ 方块：<span class="effect-placeholder">获得额外得分加成</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="boardgame-item">
+                        <h4>👻 Q - 诡异牌</h4>
+                        <p><span class="badge">诡异牌</span> <span class="badge">场景扩展</span></p>
+                        <p><strong>放置规则：</strong>可以放在场景中充当新的从属卡，为游戏增加更多策略选择</p>
+                        <p><strong>触发条件：</strong>当从属上达到2张卡牌时（无论是发牌阶段还是出牌阶段）</p>
+                        <p><strong>特殊机制：</strong>消除同色卡牌，根据从属的花色执行额外效果，消除的卡牌进入废弃区而非得分区</p>
+                        <p><strong>花色效果：</strong></p>
+                        <ul>
+                            <li>♥️ 红桃：<span class="effect-placeholder">治疗效果或资源回复</span></li>
+                            <li>♠️ 黑桃：<span class="effect-placeholder">诅咒效果或负面状态</span></li>
+                            <li>♣️ 梅花：<span class="effect-placeholder">资源转换或交换</span></li>
+                            <li>♦️ 方块：<span class="effect-placeholder">财富效果或得分操作</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="boardgame-item">
+                        <h4>🃏 大小王 - 万能牌</h4>
+                        <p><span class="badge">万能牌</span> <span class="badge">特殊加分</span></p>
+                        <p><strong>使用规则：</strong></p>
+                        <ul>
+                            <li><strong>大王：</strong>可以充当任意红色卡牌（♥️红桃 或 ♦️方块）</li>
+                            <li><strong>小王：</strong>可以充当任意黑色卡牌（♠️黑桃 或 ♣️梅花）</li>
+                        </ul>
+                        <p><strong>特殊奖励：</strong>使用王牌成功匹配时，额外获得10点得分奖励</p>
+                        <p><strong>策略提示：</strong>王牌是珍贵的万能资源，建议在关键时刻使用以扭转局势</p>
+                    </div>
+                </div>
+                
+                <div class="rules-section">
+                    <h6>🔮 未来更新计划</h6>
+                    <p>更多变体规则和特殊卡牌正在设计中，包括：</p>
+                    <ul>
+                        <li>多人对战模式</li>
+                        <li>合作模式规则</li>
+                        <li>高难度挑战关卡</li>
+                        <li>更多特殊效果卡牌</li>
+                    </ul>
+                    <p><em>敬请期待后续更新！</em></p>
+                </div>
                 {% endif %}
+    <hr>
+    <h5>🔗 相关链接</h5>
     <ul>
-        <li><a href="https://github.com">GitHub</a></li>
-        <li><a href="http://jekyll.com.cn/">jekyll</a></li>
-        <li><a href="http://huangxuan.me/">Hux</a></li> 
-        <li><a href="https://analytics.google.com/analytics">Google Analytics</a></li>
+        <li><a href="https://github.com" target="_blank">GitHub - 项目源码</a></li>
+        <li><a href="http://jekyll.com.cn/" target="_blank">Jekyll - 静态网站生成器</a></li>
+        <li><a href="http://huangxuan.me/" target="_blank">Hux - 主题作者</a></li> 
+        <li><a href="https://analytics.google.com/analytics" target="_blank">Google Analytics - 网站分析</a></li>
     </ul>
 </div>
 

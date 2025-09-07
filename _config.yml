@@ -129,7 +129,7 @@ games: [
         words: "一个正在开发中的新项目，敬请期待。",
         href: "https://store.steampowered.com/app/3155310/_/",
         reserved1: "<div style=\"font-weight: bold;display: inline;\" >Steam商店页面：</div><a href=\"https://store.steampowered.com/app/3155310/_/\" >https://store.steampowered.com/app/3155310/_/</a>",
-        reserved2: "null"
+        reserved2: "<iframe src=\"//player.bilibili.com/player.html?isOutside=true&aid=113266810490967&bvid=BV1XS11YKEMY&cid=26189041564&p=1\" scrolling=\"no\" border=\"0\" frameborder=\"no\" framespacing=\"0\" allowfullscreen=\"true\"></iframe>"
     },
     {
         title: "古堡洞穴/the Cave",

@@ -1,10 +1,10 @@
 # Site settings
 title: Drink Blog
-SEOTitle: 俊客的博客 | JUNKE Blog
+SEOTitle: 朋砚的博客 | JUNKE Blog
 header-img: img/post-bg-desk.jpg
 email: iamprogrammer97@gmail.com
 description: "一个想开发独立游戏的普通人，希望有一天能做出一款大家喜欢的游戏..Every failure is leading towards success."
-keyword: "俊客, Drink Blog, 俊客的博客, unity, IEEE, html, ai,laya"
+keyword: "朋砚, 喝水人 Blog, drinker的博客, unity, IEEE, html, ai,laya"
 url: "http://drinker.site"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/Drinkwang/jekyll2" # you code repository

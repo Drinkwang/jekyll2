@@ -94,25 +94,37 @@
      * Also, we use 'click' instead of 'touchstart' as compromise
      */
     document.addEventListener('click', function(e){
+        // 只有当导航菜单处于打开状态时才处理点击事件
+        if($navbar.className.indexOf('in') < 0) return;
+        
         // 如果点击的是toggle按钮或其子元素，不处理
-        if(e.target == $toggle || $toggle.contains(e.target)) return;
+        if(e.target == $toggle || ($toggle && $toggle.contains && $toggle.contains(e.target))) return;
         
-        // 如果点击的是dropdown相关元素，不关闭主菜单
-        if(e.target.closest && (e.target.closest('.dropdown') || e.target.closest('.dropdown-menu'))) {
-            return;
-        }
-        
-        // 兼容旧浏览器的dropdown检查
-        var dropdownParent = e.target;
-        while(dropdownParent && dropdownParent !== document) {
-            if(dropdownParent.classList && (dropdownParent.classList.contains('dropdown') || dropdownParent.classList.contains('dropdown-menu'))) {
+        // 如果点击的是导航栏内部元素，检查是否为dropdown
+        var isInsideNavbar = false;
+        var navbarElement = document.querySelector('#huxblog_navbar');
+        if(navbarElement && navbarElement.contains && navbarElement.contains(e.target)) {
+            isInsideNavbar = true;
+            
+            // 如果点击的是dropdown相关元素，不关闭主菜单
+            if(e.target.closest && (e.target.closest('.dropdown') || e.target.closest('.dropdown-menu'))) {
                 return;
             }
-            dropdownParent = dropdownParent.parentNode;
+            
+            // 兼容旧浏览器的dropdown检查
+            var dropdownParent = e.target;
+            while(dropdownParent && dropdownParent !== navbarElement) {
+                if(dropdownParent.classList && (dropdownParent.classList.contains('dropdown') || dropdownParent.classList.contains('dropdown-menu'))) {
+                    return;
+                }
+                dropdownParent = dropdownParent.parentNode;
+            }
         }
         
-        // 其他情况才关闭主菜单
-        __HuxNav__.close();
+        // 只有点击导航栏外部或导航栏内非dropdown元素时才关闭菜单
+        if(!isInsideNavbar || (isInsideNavbar && e.target.tagName === 'A')) {
+            __HuxNav__.close();
+        }
     })
     
     // 确保Bootstrap dropdown功能正常工作

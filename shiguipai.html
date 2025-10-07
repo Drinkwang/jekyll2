@@ -141,17 +141,17 @@ header-img: "img/post-bg-rwd.jpg"
                     
                     <h6>🔄 游戏流程</h6>
                     <ol>
-                        <li><strong>进入发牌阶段：</strong>每个从属卡从牌堆中获得一张"需求卡"（从牌堆抽取）</li>
+                        <li><strong>进入发牌阶段：</strong>洗牌并每个从属卡从牌堆中获得一张"需求卡"（从牌堆抽取）</li>
                         <li><strong>进入惩罚阶段：</strong>如果因为发牌阶段，导致从属上有二张花色一样的卡，玩家需要支付从属花色作为惩罚，否则扣除1点体力值</li>
                         <li><strong>代替惩罚</strong>玩家如果没有支付花色，可用红桃代替，惩罚阶段结束，将相同的花色卡牌移出 作为废弃区（双方共有）</li>
                         <li><strong>抽牌阶段：</strong>玩家如果手牌小于五张，抽一张，这些称为"资源卡"</li>
-                        <li><strong>出牌阶段：</strong>每回合最多可打出4张资源卡<del>（每种花色限一次，这个限制可废除）</del>到从属上，如果从属在出牌阶段达到2张，则这些牌移出，进入玩家的得分区（每个玩家有不同的得分区）</li>
+                        <li><strong>出牌阶段：</strong>每回合最多可打出4张资源卡<del>（每种花色限一次，这个限制已废除）</del>到从属上，如果从属在出牌阶段达到2张，则这些牌移出，进入玩家的得分区（每个玩家有不同的得分区），由下家玩家观看牌堆，挑选从属上的花色卡交给得分玩家</li>
                         <li><strong>出牌阶段结束：</strong>再次进入下一名玩家（顺时针）的发牌阶段，如果单人游玩，则还是自己的发牌阶段</li>
                     </ol>
                     
                     <h6>💎 得分结算</h6>
                     <ul>
-                        <li><strong>如何结束：</strong>五个回合结束后，游戏结束，进行结算，如果多人游玩，以庄家玩家进行回合计数，也就是如果是2名玩家一共要执行十个回合</li>
+                        <li><strong>如何结束：</strong>五个回合结束后，游戏结束，进行结算，如果多人游玩，以庄家玩家进行回合计数，也就是如果是2名玩家一共要执行十个回合，如果卡组牌在发牌阶段不足以发一次牌，游戏也会结束</li>
                         <li><strong>如何结算：</strong>玩家得分区的卡牌每张算10分，如果得分区有2张相同数字的卡牌，额外+10分</li>
                     </ul>
                     
@@ -182,29 +182,29 @@ header-img: "img/post-bg-rwd.jpg"
                     <div class="boardgame-item">
                         <h4>🗡️ J - 武器牌</h4>
                         <p><span class="badge">武器牌</span> <span class="badge">道具牌</span></p>
-                        <p><strong>获取条件：</strong>当得分区拥有四种不同花色时，可以移出四张卡牌进入废弃区，将一张武器牌加入手卡，整局游戏中，所有加入游戏的武器牌只能发动一次</p>
+                        <p><strong>获取条件：</strong>当得分区拥有四种不同花色时，可以移出四张卡牌进入废弃区，将一张随机武器牌加入手卡，整局游戏中，所有加入游戏的武器牌只能发动一次</p>
                         <p><strong>使用效果：</strong>武器卡发动后直接进入得分区，提供40点得分，武器牌打出立刻执行额外效果</p>
-                        <p><strong>花色效果：</strong></p>
+                        <p><strong>花色效果：（触发可以任意选择合法目标）</strong></p>
                         <ul>
-                            <li>♥️ 红桃：<span class="effect-placeholder">恢复体力一点</span></li>
-                            <li>♠️ 黑桃：<span class="effect-placeholder">对手选择弃掉一张手卡</span></li>
-                            <li>♣️ 梅花：<span class="effect-placeholder">抽一张牌</span></li>
-                            <li>♦️ 方块：<span class="effect-placeholder">将对手得分区一张牌移出到废弃区</span></li>
+                            <li>♥️ 红桃：<span class="effect-placeholder">将对面得分区1张牌送到以发牌形式放在从属上</span></li>
+                            <li>♠️ 黑桃：<span class="effect-placeholder">对手选择弃掉一张手卡，如果没有手牌，则造成一点伤害</span></li>
+                            <li>♣️ 梅花：<span class="effect-placeholder">抽一张牌，并获得2次出牌机会</span></li>
+                            <li>♦️ 方块：<span class="effect-placeholder">手牌数小于对面的抽2张牌，体力值小于对面的恢复一点体力</span></li>
                         </ul>
                     </div>
                     
                     <div class="boardgame-item">
                         <h4>👻 Q - 诡异牌</h4>
                         <p><span class="badge">诡异牌</span> <span class="badge">场景扩展</span></p>
-                        <p><strong>放置规则：</strong>可以放在场景中充当新的从属卡，为游戏增加更多策略选择</p>
+                        <p><strong>放置规则：</strong>可以放在场景中充当新的从属卡（场上只能存在一个），为游戏增加更多策略选择</p>
                         <p><strong>触发条件：</strong>当从属上达到2张卡牌时（无论是发牌阶段还是出牌阶段）</p>
-                        <p><strong>特殊机制：</strong>消除同色卡牌，根据从属的花色执行额外效果，消除的卡牌进入废弃区而非得分区</p>
-                        <p><strong>花色效果：</strong></p>
+                        <p><strong>特殊机制：</strong>消除同色卡牌和诡异卡，根据从属的花色执行额外附加效果，消除的卡牌进入废弃区而非得分区，接下来将剩下的诡异卡随即一张以新的从属卡的形式加入场景，如果不存在新的诡异卡，将废弃区的诡异卡重新加入游戏</p>
+                        <p><strong>花色效果：（触发可以任意选择合法玩家目标）</strong></p>
                         <ul>
-                            <li>♥️ 红桃：<span class="effect-placeholder">恢复体力一点</span></li>
-                            <li>♠️ 黑桃：<span class="effect-placeholder">你选择对手弃掉一张手卡</span></li>
-                            <li>♣️ 梅花：<span class="effect-placeholder">双方交换一张手牌</span></li>
-                            <li>♦️ 方块：<span class="effect-placeholder">将对手得分区一张牌移出到自己得分区<</span></li>
+                            <li>♥️ 红桃：<span class="effect-placeholder">恢复体力一点，并将出牌机变成2次</span></li>
+                            <li>♠️ 黑桃：<span class="effect-placeholder">你选择目标随机弃掉一张手卡，如果大于5则自己也需要弃掉一张手牌，不然扣点体力</span></li>
+                            <li>♣️ 梅花：<span class="effect-placeholder">双方交换一张手牌，点数大的对点数低的造成一点伤害</span></li>
+                            <li>♦️ 方块：<span class="effect-placeholder">弃掉2张得分区的卡牌，并将目标得分区一张牌移出到自己得分区</span></li>
                         </ul>
                     </div>
 
@@ -215,8 +215,9 @@ header-img: "img/post-bg-rwd.jpg"
                         <ul>
                             <li><strong>大王：</strong>可以充当任意红色卡牌（♥️红桃 或 ♦️方块）</li>
                             <li><strong>小王：</strong>可以充当任意黑色卡牌（♠️黑桃 或 ♣️梅花）</li>
+                            <li><strong>发牌规则：</strong>发牌区只要存在大/小王 任意一张，就必须即可执行惩罚</li>
                         </ul>
-                        <p><strong>特殊奖励：</strong>使用王牌成功匹配时，额外获得10点得分奖励</p>
+                        <p><strong>特殊奖励：</strong>王牌额外结算时，额外+10分</p>
                         <p><strong>策略提示：</strong>王牌是珍贵的万能资源，建议在关键时刻使用以扭转局势</p>
                     </div>
                 </div>

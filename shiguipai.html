@@ -257,17 +257,24 @@ header-img: "img/post-bg-rwd.jpg"
     // handle render
     function _render(){
         var _hash = window.location.hash;
-        // en
-        if(_hash == "#en"){
-            $select.selectedIndex = 1;
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        // zh by default
-        }else{
-            // not trigger onChange, otherwise cause a loop
-            $select.selectedIndex = 0;
-            $zh.style.display = "block";
-            $en.style.display = "none";
+        // 检查 select 元素是否存在
+        if ($select) {
+            // en
+            if(_hash == "#en"){
+                $select.selectedIndex = 1;
+                if ($en) $en.style.display = "block";
+                if ($zh) $zh.style.display = "none";
+            // zh by default
+            }else{
+                // not trigger onChange, otherwise cause a loop
+                $select.selectedIndex = 0;
+                if ($zh) $zh.style.display = "block";
+                if ($en) $en.style.display = "none";
+            }
+        } else {
+            // 如果没有语言选择器，默认显示中文
+            if ($zh) $zh.style.display = "block";
+            if ($en) $en.style.display = "none";
         }
     }
 
@@ -285,27 +292,267 @@ header-img: "img/post-bg-rwd.jpg"
 </script>
 
 
-<!-- Gitalk 评论 start  -->
+<!-- 桌游规则讨论区 start -->
 {% if site.gitalk.enable %}
-<!-- Gitalk link  -->
+<!-- Gitalk CSS -->
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
 
-<div id="gitalk-container"></div>
-    <script type="text/javascript">
-    var gitalk = new Gitalk({
-    clientID: '{{site.gitalk.clientID}}',
-    clientSecret: '{{site.gitalk.clientSecret}}',
-    repo: '{{site.gitalk.repo}}',
-    owner: '{{site.gitalk.owner}}',
-    admin: ['{{site.gitalk.admin}}'],
-    distractionFreeMode: {{site.gitalk.distractionFreeMode}},
-    id: 'about',
+<!-- 自定义样式 -->
+<style>
+.boardgame-discussion {
+    margin: 40px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.discussion-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.discussion-header h3 {
+    color: #0085a1;
+    margin-bottom: 10px;
+}
+
+.discussion-categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.category-btn {
+    padding: 10px 20px;
+    border: 2px solid #0085a1;
+    background: white;
+    color: #0085a1;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: #0085a1;
+    color: white;
+}
+
+.discussion-container {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.category-description {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #0085a1;
+}
+
+.upload-guide {
+    background: #fff3e0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #ff9800;
+}
+
+.upload-guide h5 {
+    color: #e65100;
+    margin-bottom: 10px;
+}
+
+.upload-guide ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.upload-guide li {
+    margin-bottom: 5px;
+}
+</style>
+
+<div class="boardgame-discussion">
+    <div class="discussion-header">
+        <h3>🎲 桌游规则讨论区</h3>
+        <p>分享你的桌游规则，讨论游戏心得，或者留下宝贵建议</p>
+    </div>
+
+    <!-- 分类选择器 -->
+    <div class="discussion-categories">
+        <button class="category-btn active" onclick="switchCategory('rules', this)">
+            📋 新规则分享
+        </button>
+        <button class="category-btn" onclick="switchCategory('feedback', this)">
+            💭 游戏反馈
+        </button>
+        <button class="category-btn" onclick="switchCategory('questions', this)">
+            ❓ 规则疑问
+        </button>
+        <button class="category-btn" onclick="switchCategory('variants', this)">
+            🎯 变体玩法
+        </button>
+        <button class="category-btn" onclick="switchCategory('general', this)">
+            💬 一般讨论
+        </button>
+    </div>
+
+    <!-- 讨论容器 -->
+    <div class="discussion-container">
+        <!-- 当前分类说明 -->
+        <div id="category-info" class="category-description">
+            <strong>📋 新规则分享</strong> - 在这里分享你的原创桌游规则或对现有规则的改进建议
+        </div>
+
+        <!-- 上传指南 -->
+        <div id="upload-guide" class="upload-guide">
+            <h5>📤 分享规则指南：</h5>
+            <ul>
+                <li>请详细描述游戏的基本规则和获胜条件</li>
+                <li>如果可能，请提供游戏示例或图片说明</li>
+                <li>标明适合的玩家人数和游戏时长</li>
+                <li>欢迎分享你的设计思路和灵感来源</li>
+            </ul>
+        </div>
+
+        <!-- Gitalk 容器 -->
+        <div id="gitalk-container"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+// 分类信息配置
+const categoryConfig = {
+    'rules': {
+        title: '📋 新规则分享',
+        description: '在这里分享你的原创桌游规则或对现有规则的改进建议',
+        guide: {
+            title: '📤 分享规则指南：',
+            items: [
+                '请详细描述游戏的基本规则和获胜条件',
+                '如果可能，请提供游戏示例或图片说明',
+                '标明适合的玩家人数和游戏时长',
+                '欢迎分享你的设计思路和灵感来源'
+            ]
+        }
+    },
+    'feedback': {
+        title: '💭 游戏反馈',
+        description: '分享你的游戏体验，提出改进建议或报告发现的问题',
+        guide: {
+            title: '💡 反馈建议：',
+            items: [
+                '描述具体的游戏场景和遇到的问题',
+                '提供建设性的改进建议',
+                '分享游戏过程中的有趣经历',
+                '评价游戏的平衡性和趣味性'
+            ]
+        }
+    },
+    'questions': {
+        title: '❓ 规则疑问',
+        description: '对游戏规则有疑问？在这里提问，获得详细解答',
+        guide: {
+            title: '🤔 提问技巧：',
+            items: [
+                '清楚描述遇到的具体情况',
+                '引用相关的规则条文',
+                '提供游戏状态的详细信息',
+                '一次只问一个明确的问题'
+            ]
+        }
+    },
+    'variants': {
+        title: '🎯 变体玩法',
+        description: '探讨和分享各种有趣的游戏变体和扩展规则',
+        guide: {
+            title: '🎲 变体分享：',
+            items: [
+                '说明变体规则与原版的区别',
+                '解释变体的设计目的和效果',
+                '提供平衡性测试的结果',
+                '标注适合的玩家群体'
+            ]
+        }
+    },
+    'general': {
+        title: '💬 一般讨论',
+        description: '关于桌游的任何话题都可以在这里讨论',
+        guide: {
+            title: '💭 讨论提示：',
+            items: [
+                '保持友善和尊重的讨论氛围',
+                '分享你的桌游经历和心得',
+                '推荐其他有趣的桌游',
+                '讨论桌游文化和发展趋势'
+            ]
+        }
+    }
+};
+
+let currentGitalk = null;
+
+// 切换分类函数
+function switchCategory(category, buttonElement) {
+    // 更新按钮状态
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
     });
-    gitalk.render('gitalk-container');
+    buttonElement.classList.add('active');
+    
+    // 更新分类信息
+    const config = categoryConfig[category];
+    const categoryInfo = document.getElementById('category-info');
+    const uploadGuide = document.getElementById('upload-guide');
+    
+    categoryInfo.innerHTML = `<strong>${config.title}</strong> - ${config.description}`;
+    
+    uploadGuide.innerHTML = `
+        <h5>${config.guide.title}</h5>
+        <ul>
+            ${config.guide.items.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+    `;
+    
+    // 销毁现有的 Gitalk 实例
+    if (currentGitalk) {
+        document.getElementById('gitalk-container').innerHTML = '';
+    }
+    
+    // 创建新的 Gitalk 实例
+    currentGitalk = new Gitalk({
+        clientID: '{{site.gitalk.clientID}}',
+        clientSecret: '{{site.gitalk.clientSecret}}',
+        repo: '{{site.gitalk.repo}}',
+        owner: '{{site.gitalk.owner}}',
+        admin: ['{{site.gitalk.admin}}'],
+        distractionFreeMode: {{site.gitalk.distractionFreeMode}},
+        id: 'shiguipai-' + category, // 为每个分类创建独立的讨论区
+        title: '仕诡牌 - ' + config.title,
+        body: '欢迎在 ' + config.title + ' 分类下进行讨论！\n\n' + config.description,
+        labels: ['桌游讨论', category]
+    });
+    
+    currentGitalk.render('gitalk-container');
+}
+
+// 页面加载完成后初始化默认分类
+document.addEventListener('DOMContentLoaded', function() {
+    // 初始化默认的规则分享分类
+    const defaultButton = document.querySelector('.category-btn.active');
+    switchCategory('rules', defaultButton);
+});
 </script>
 {% endif %}
-<!-- Gitalk end -->
+<!-- 桌游规则讨论区 end -->
 
 
 

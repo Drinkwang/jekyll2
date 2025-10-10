@@ -22,7 +22,7 @@
         "grunt-contrib-uglify": "~0.5.1"
     },
     "scripts": {
-        "build": "bundle exec jekyll build",
+        "build": "bundle exec jekyll build --trace",
         "serve": "bundle exec jekyll serve --livereload",
         "serve-drafts": "bundle exec jekyll serve --livereload --drafts",
         "clean": "bundle exec jekyll clean",

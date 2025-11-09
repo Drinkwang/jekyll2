@@ -6,7 +6,9 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
+    {% unless page.hide_nav %}
     {% include nav.html %}
+{% endunless %}
 
     {{ content }}
 

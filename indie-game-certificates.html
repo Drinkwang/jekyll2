@@ -1,0 +1,108 @@
+---
+layout: page
+title: "独立游戏评级证书"
+description: "查询和展示独立游戏证书"
+header-img: "img/post-bg-rwd.jpg"
+---
+
+<div class="zh post-container">
+    <h3>🎮 独立游戏评级证书颁布</h3>
+    <p>输入证书编号查询相关信息，或浏览展示游戏。</p>
+    
+    <!-- 查询输入 -->
+    <div style="margin: 20px 0;">
+        <input type="text" id="cert-id" placeholder="输入证书编号" style="padding: 10px; width: 300px;">
+        <button onclick="queryCertificate()" style="padding: 10px 20px;">查询</button>
+    </div>
+    
+    <div id="result" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <!-- 查询结果将在这里显示 -->
+    </div>
+    
+    <h4>🏆 主页展示证书（轮播图）</h4>
+    <div id="carousel" style="margin-bottom: 30px;">
+        <!-- 轮播图将在这里显示 -->
+    </div>
+    
+    <h4>📜 所有游戏列表</h4>
+    <div id="game-list">
+        <!-- 游戏列表将在这里显示 -->
+    </div>
+
+    <script>
+        // 示例数据（你可以手动添加更多）
+        const certificates = [
+            { id: '001', game: 'Game A', certImage: '/assets/cert-001.png', clip: '/assets/clip-001.mp4', intro: 'Game A introduction', showOnHome: true },
+            { id: '002', game: 'Game B', certImage: '/assets/cert-002.png', clip: '/assets/clip-002.mp4', intro: 'Game B introduction', showOnHome: false }
+            // 添加更多证书数据
+        ];
+
+        function queryCertificate() {
+            const id = document.getElementById('cert-id').value;
+            const cert = certificates.find(c => c.id === id);
+            const resultDiv = document.getElementById('result');
+            if (cert) {
+                resultDiv.innerHTML = `
+                    <h5>${cert.game}</h5>
+                    <img src="${cert.certImage}" alt="证书" style="max-width: 100%;">
+                    <video src="${cert.clip}" controls style="max-width: 100%;"></video>
+                    <p>${cert.intro}</p>
+                    <p>显示在主页: ${cert.showOnHome ? '是' : '否'}</p>
+                `;
+            } else {
+                resultDiv.innerHTML = '<p>未找到证书</p>';
+            }
+        }
+
+        // 显示轮播图（仅 showOnHome=true）
+        function displayCarousel() {
+            const carouselDiv = document.getElementById('carousel');
+            const homeCerts = certificates.filter(c => c.showOnHome);
+            if (homeCerts.length === 0) {
+                carouselDiv.innerHTML = '<p>暂无主页展示证书</p>';
+                return;
+            }
+            
+            let html = '<div style="position: relative; overflow: hidden; width: 100%; max-width: 600px; margin: auto;">';
+            homeCerts.forEach((cert, index) => {
+                html += `
+                    <div class="carousel-item" style="display: ${index === 0 ? 'block' : 'none'};">
+                        <h5>${cert.game} (ID: ${cert.id})</h5>
+                        <img src="${cert.certImage}" alt="证书" style="max-width: 100%;">
+                        <video src="${cert.clip}" controls style="max-width: 100%;"></video>
+                        <p>${cert.intro}</p>
+                    </div>`;
+            });
+            html += `
+                <button onclick="changeSlide(-1)" style="position: absolute; top: 50%; left: 0;">&lt;</button>
+                <button onclick="changeSlide(1)" style="position: absolute; top: 50%; right: 0;">&gt;</button>
+            </div>`;
+            carouselDiv.innerHTML = html;
+        }
+
+        let currentSlide = 0;
+        function changeSlide(direction) {
+            const items = document.querySelectorAll('.carousel-item');
+            currentSlide = (currentSlide + direction + items.length) % items.length;
+            items.forEach((item, i) => {
+                item.style.display = i === currentSlide ? 'block' : 'none';
+            });
+        }
+
+        // 显示游戏列表（所有证书）
+        function displayGames() {
+            const listDiv = document.getElementById('game-list');
+            let html = '';
+            certificates.forEach(cert => {
+                html += `<div style="margin: 10px 0;">
+                    <h6>${cert.game} (ID: ${cert.id}) - ${cert.showOnHome ? '主页显示' : ''}</h6>
+                    <p>${cert.intro}</p>
+                </div>`;
+            });
+            listDiv.innerHTML = html;
+        }
+
+        displayCarousel();
+        displayGames();
+    </script>
+</div>

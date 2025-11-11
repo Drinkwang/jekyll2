@@ -12,7 +12,9 @@
 
     {{ content }}
 
+    {% unless page.hide_footer %}
     {% include footer.html %}
+    {% endunless %}
 
 
 <!-- Image to hack wechat -->
